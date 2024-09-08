@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <title>Responsive Sidebar with Footer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Mitr', sans-serif;
+            background-color: #464545;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Container สำหรับจัด layout sidebar และ content */
+        .container {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* ทำให้ footer อยู่ด้านล่างของ sidebar */
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #575757;
+            color: #f1f1f1;
+        }
+
+        .nav-link:active {
+            background-color: #444;
+            color: #ddd;
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+        }
+
+        /* Content ที่จะแสดง iframe */
+        .content {
+            margin-left: 250px; /* เว้นที่สำหรับ sidebar */
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #ffffff; /* แก้ไขสีพื้นหลังให้เป็นสีขาว */
+            border: none; /* ลบกรอบที่อาจจะมีการตั้งค่า */
+            box-shadow: none; /* ยกเลิกการใช้เงา */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none; /* ลบเส้นกรอบของ iframe */
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #f1f1f1;
+        }
+
+        .footer i {
+            margin-right: 5px;
+            color: #f1f1f1;
+        }
+
+        /* สำหรับหน้าจอขนาดเล็ก */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%; /* ให้ sidebar กว้างเต็มหน้าจอ */
+                position: relative; /* ทำให้ sidebar อยู่เหนือ content */
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0; /* ปรับ content ให้เต็มจอเมื่อ sidebar อยู่ด้านบน */
+            }
+
+            iframe {
+                height: 70vh; /* ลดความสูงของ iframe สำหรับหน้าจอเล็ก */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar สำหรับเมนู -->
+        <div class="sidebar">
+            <div>
+                <h1>Menu</h1>
+                <a href="page1.html" target="content-frame" class="nav-link"><i class="fab fa-raspberry-pi" style='font-size:24px'></i> Raspberry Pi</a>
+                <a href="page2.html" target="content-frame" class="nav-link"><i class="fab fa-raspberry-pi" style='font-size:24px'></i> Raspberry Pi+Node-red</a>
+                <a href="page3.html" target="content-frame" class="nav-link"><i class="fab fa-raspberry-pi" style='font-size:24px'></i> Raspberry Pi+Iot</a>
+                <a href="page4.html" target="content-frame" class="nav-link"><i class="fab fa-raspberry-pi" style='font-size:24px'></i> Raspberry Pi+Chat-bot</a>
+                <a href="page5.html" target="content-frame" class="nav-link"><i class="fas fa-microchip" style='font-size:24px'></i> ET-ESP32(WROVER) RS485 V2 </a>
+                <a href="page9.html" target="content-frame" class="nav-link"><i class="fas fa-cogs" style='font-size:24px'></i> Siemens LOGO8 </a>
+            </div>
+            <!-- Footer อยู่ใน sidebar -->
+            <div class="footer">
+                <i class="fas fa-user-cog"></i>
+                <a href="profile.html" target="content-frame">ผู้จัดทำ</a>
+            </div>
+        </div>
+
+        <!-- พื้นที่เนื้อหา ที่จะแสดง iframe -->
+        <div class="content">
+            <iframe name="content-frame" src="page1.html"></iframe> <!-- Iframe สำหรับแสดงเนื้อหา -->
+        </div>
+    </div>
+</body>
+</html>

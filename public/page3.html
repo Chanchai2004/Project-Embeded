@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การเชื่อมต่อ Blynk กับ Node-RED ผ่าน Raspberry Pi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+
+    <div class="content">
+        <center><h2 style="color: red"><i class="fa fa-warning" style="font-size:20px;color:red"></i> ข้อตกลงผู้อ่าน <i class="fa fa-warning" style="font-size:20px;color:red"></i></h2>
+        <p style="color: red">***ข้อมูลจากบล็อกนี้จัดทำเมื่อวันที่ 27/07/2567***</p>
+        </center>
+        <h1>การเชื่อมต่อ Blynk กับ Node-RED ผ่าน Raspberry Pi</h1>
+        <img src="Embeded2/1.1.jpeg" class="cen">
+        <p>Blynk เป็นแพลตฟอร์มคลาวด์ที่ให้บริการฟรีสำหรับ IOT โดย Blynk เป็นแอปพลิเคชันสำเร็จรูปที่ออกแบบมาเพื่อการใช้งาน IOT โดยเฉพาะ ความน่าสนใจของ Blynk คือการเขียนโปรแกรมที่ง่ายดาย ไม่ต้องพัฒนาแอปเองและสามารถใช้งานได้แบบเรียลไทม์ ทำให้สามารถเชื่อมต่ออุปกรณ์ต่างๆ กับอินเทอร์เน็ตได้อย่างง่ายดาย ไม่ว่าจะเป็น Arduino, ESP-8266, ESP-32, Node-MCU, Raspberry Pi ซึ่งสามารถนำมาแสดงผลบนแอปพลิเคชัน Blynk ได้อย่างง่ายดาย นอกจากนี้ แอปพลิเคชัน Blynk ยังให้บริการฟรีและรองรับการใช้งานในระบบปฏิบัติการ IOS และ Android อีกด้วย</p>
+
+        <h2>Blynk กับ Node-RED</h2>
+        <ul>
+            <li>ทดสอบการควบคุม 4 LED ด้วย Raspberry Pi ผ่าน Node-RED</li>
+            <li>เพิ่มการส่งข้อมูลอุณหภูมิไปแสดงบนเกจใน Blynk</li>
+        </ul>
+
+        <p>เข้าไปที่ <a href="https://blynk.io/" target="_blank">https://blynk.io/</a></p>
+
+        <h3>1. การใช้งาน Blynk</h3>
+        <h4>1.1 สร้างเทมเพลตใหม่</h4>
+        <img src="Embeded2/1.png" class="cen">
+        <img src="Embeded2/2.png" class="cen">
+
+        <p>เมื่อสร้างเสร็จแล้ว คุณจะได้รับ Template ID, Template Name และ Token</p>
+        <img src="Embeded2/3.png" class="cen2">
+        <h4>1.2 สร้างอุปกรณ์ใหม่</h4>
+        <img src="Embeded2/4.png" class="cen">
+        <img src="Embeded2/5.png" class="cen">
+        <img src="Embeded2/6.png" class="cen">
+        <h4>1.3 เข้าสู่การแก้ไขอุปกรณ์</h4>
+        <img src="Embeded2/7.png" class="cen">
+        <p>ตั้งค่า Datastream V0 -> V3 สำหรับสวิตช์</p>
+        <img src="Embeded2/8.png" class="cen">
+        <p>ตั้งค่า Datastream V4 สำหรับเกจวัด</p>
+        <img src="Embeded2/9.png" class="cen">
+        <h4>1.4 เลือก UI สำหรับพินต่างๆ</h4>
+        <img src="Embeded2/10.png" class="cen">
+
+        <h3>2. การติดตั้ง Node-RED บน Raspberry Pi</h3>
+        <h4>2.1 อัพเดตแพ็กเกจและระบบ:</h4>
+        <p>เปิด Terminal และรันคำสั่งต่อไปนี้เพื่ออัพเดตแพ็กเกจและระบบของ Raspberry Pi:</p>
+        <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+
+        <h4>2.2 ติดตั้ง Node.js:</h4>
+        <p>Node-RED ต้องการ Node.js ในการทำงาน เราจะติดตั้ง Node.js เวอร์ชันที่เหมาะสมโดยใช้ NodeSource repository:</p>
+        <pre><code>curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+sudo apt install -y nodejs</code></pre>
+
+        <h4>2.3 ติดตั้ง Node-RED:</h4>
+        <p>เมื่อติดตั้ง Node.js เสร็จแล้ว ให้ติดตั้ง Node-RED ด้วย npm:</p>
+        <pre><code>sudo npm install -g --unsafe-perm node-red</code></pre>
+
+        <h4>2.4 เริ่มการทำงานของ Node-RED:</h4>
+        <p>เพื่อเริ่มต้น Node-RED ให้รันคำสั่งนี้ใน Terminal:</p>
+        <pre><code>node-red</code></pre>
+        <p>Node-RED จะเริ่มทำงานและจะแสดง URL ที่สามารถเข้าถึง Node-RED Editor ในเว็บเบราว์เซอร์ (โดยปกติจะเป็น <code>http://&lt;your_pi_ip_address&gt;:1880</code>).</p>
+
+        <h4>2.5 ตั้งค่าให้ Node-RED เริ่มต้นอัตโนมัติเมื่อเปิดเครื่อง:</h4>
+        <p>ใช้ pm2 เพื่อตั้งค่า Node-RED ให้เริ่มต้นอัตโนมัติเมื่อเปิดเครื่อง:</p>
+        <ul>
+            <li>ติดตั้ง pm2:</li>
+            <pre><code>sudo npm install -g pm2</code></pre>
+            <li>สั่งให้ pm2 เริ่ม Node-RED:</li>
+            <pre><code>pm2 start `which node-red` -- -v 
+pm2 save 
+pm2 startup</code></pre>
+        </ul>
+        <p>คำสั่ง pm2 startup จะแสดงคำสั่งเพิ่มเติมที่คุณต้องรันด้วย sudo ให้คัดลอกและรันคำสั่งนั้นใน Terminal.</p>
+
+        <p>เมื่อคุณทำตามขั้นตอนข้างต้นเสร็จสิ้นแล้ว คุณก็สามารถใช้ Node-RED บน Raspberry Pi ได้เรียบร้อยแล้วครับ</p>
+
+        <h4>จัดการ Palette -> ติดตั้ง node-red-contrib-blynk-iot</h4>
+        <img src="Embeded2/11.png" class="cen">
+        <img src="Embeded2/12.png" class="cen">
+        <img src="Embeded2/13.png" class="cen">
+        <h4>ตั้งค่าการป้อนข้อมูล timestamp ให้สั่งทุกๆ 1 วินาที</h4>
+        <img src="Embeded2/14.png" class="cen">
+        <h4>ตั้งค่า Pin V0->V3</h4>
+        <img src="Embeded2/15.png" class="cen">
+        <h4>ใส่ token และ template ID จาก Blynk</h4>
+        <img src="Embeded2/3.png" class="cen2">
+        <img src="Embeded2/16.png" class="cen">
+        <h4>ตั้งค่าฟังก์ชัน</h4>
+        <img src="Embeded2/17.png" class="cen">
+        <h4>จากนั้นกด Deploy แล้วดูผลลัพธ์<br>
+           คุณจะสามารถควบคุม LED 4 ดวง และแสดงผลตัวเลขสุ่มทางเกจได้</h4>
+           <img src="Embeded2/18.jpg" class="cen">
+        
+           <h1>การใช้งาน Raspberry Pi กับ Node-RED เพื่อแสดงค่าและควบคุมผ่าน Public MQTT Server</h1>
+           <ul>
+               <li>ทดสอบควบคุม 4 LED ด้วย Raspberry Pi ผ่าน Node-RED</li>
+               <li>เพิ่มการส่งข้อมูล Temperature (randoms) ไปแสดงบน Server</li>
+           </ul>
+   
+           <h3>1. การตั้งค่า Node-RED</h3>
+           <h4>1.1 ภาพรวมของ Flow ใน Node-RED</h4>
+           <img src="Embeded2/2/1.png" class="cen">
+           <h4>1.2 การเลือก Block MQTT และตั้งค่า Topic และ QoS จากนั้นเพิ่ม Server</h4>
+           <img src="Embeded2/2/2.png" class="cen">
+           <h4>1.3 เพิ่ม Server broker.mqtt.cool และ Port 1883</h4>
+           <img src="Embeded2/2/3.png" class="cen">
+           <h4>1.4 การตั้งค่า Block Change Rule</h4>
+           <img src="Embeded2/2/4.png" class="cen">
+           <p>***เพิ่มเติม***</p>
+           <p>สังเกตได้ว่าเมื่ออ่านค่าจาก broker พบ “1on” จะ return ค่า true ทำให้ไฟ LED ติด<br>
+              เมื่ออ่านค่าจาก broker พบ “1off” จะ return ค่า true ทำให้ไฟ LED ดับ</p>
+   
+           <h4>1.5 การตั้งค่า Function Random Temp และส่งไปยัง broker</h4>
+           <img src="Embeded2/2/5.png" class="cen">
+   
+           <h3>2. การใช้งาน Broker</h3>
+           <h4>2.1 เข้าไปที่ <a href="https://testclient-cloud.mqtt.cool/" target="_blank">https://testclient-cloud.mqtt.cool/</a></h4>
+           <h4>2.2 เลือก broker.mqtt.cool:1883</h4>
+           <img src="Embeded2/2/6.png" class="cen">
+           <h4>2.3 Subscribe Topic (ต้องตรงกับที่ตั้งค่าใน Node-RED) จากนั้นกรอก Topic ใน Publish แล้วส่ง</h4>
+           <img src="Embeded2/2/7.png" class="cen">
+           <p>***เพิ่มเติม***</p>
+           <p>ค่าที่ปรากฏด้านขวาคือ Temperature ที่เราส่งมาจาก Node-RED จะแสดงเมื่อเรา Subscribe Topic นี้ไว้</p>
+   
+           <h4>ผลลัพธ์</h4>
+           <p>เราสามารถควบคุม LED ทั้ง 4 ดวงผ่านการ Publish ค่า แล้วให้ Node-RED รับค่าแล้วสั่งเปิด-ปิด LED<br>
+              ค่า Temperature จะถูกส่งไปยัง broker ทุก 1 วินาทีตามที่ตั้งค่าไว้</p>
+            
+              <h1>MQTT Server บน Raspberry Pi</h1>
+              <ul>
+                  <li>ทดสอบควบคุม 4 LED ด้วย Raspberry Pi ผ่าน Node-RED ไปยัง private server</li>
+                  <li>เพิ่มเติมให้ส่งข้อมูล Temperature ไปแสดงที่ บน private Server</li>
+              </ul>
+              <h2>การติดตั้ง MQTT Broker บน Raspberry Pi</h2>
+              <p>MQTT (Message Queuing Telemetry Transport) เป็นโปรโตคอล (Protocol) สำหรับการติดต่อสื่อสารและรับส่งข้อมูลระหว่างอุปกรณ์ต่างๆ ที่เชื่อมต่อกันอยู่บนระบบเครือข่ายภายใน (LAN) และระบบเครือข่ายอินเตอร์เน็ต เช่น คอมพิวเตอร์ สมาร์ทโฟน เซ็นเซอร์อุณหภูมิ เซ็นเซอร์ตรวจจับการเคลื่อนไหว สวิตช์และปลั๊กไฟอัจฉริยะ อุปกรณ์ระบบกันขโมย อุปกรณ์ระบบควบคุมอัตโนมัติ และอุปกรณ์อื่นๆ เป็นต้น</p>
+              <p>การรับส่งข้อมูลด้วย MQTT นั้นรวดเร็วเนื่องจากข้อมูลมีขนาดเล็กมาก สามารถส่งไปยังหรือรับข้อมูลจากอุปกรณ์จำนวนมากได้พร้อมๆ กัน โดยใช้ระบบ Broker, Publisher, Subscriber และ Topic</p>
+              <p>โบรคเกอร์ก็คือ MQTT Server ที่เรากำลังจะติดตั้ง ส่วนพับบลิเชอร์และซับสไครบ์เบอร์ก็คืออุปกรณ์ต่างๆ ที่เชื่อมต่อกันอยู่ในระบบเน็ตเวิร์ก อุปกรณ์ที่ทำหน้าที่เป็นพับบลิเชอร์จะส่งข้อมูลตามหัวข้อ Topic ไปยังโบรคเกอร์ หากอุปกรณ์ใดๆ ที่สมัคร (Subscribe) ในหัวข้อ Topic นั้นไว้ โบรคเกอร์จะส่งข้อมูลตามหัวข้อ Topic นั้นไปยังอุปกรณ์ต่างๆ ทั้งหมดที่สมัคร (Subscribe) ไว้ทั้งหมด ส่วนอุปกรณ์ที่ไม่ได้สมัคร (Subscribe) ในหัวข้อ Topic นั้นไว้ ก็จะไม่ได้รับข้อมูล เพราะโบรคเกอร์ก็จะไม่ส่งข้อมูลในหัวข้อ Topic นั้นไปให้</p>
+              <p>อนึ่ง อุปกรณ์ทุกชิ้นในระบบเน็ตเวิร์กสามารถส่ง (Publish) หรือรับ (Subscribe) ข้อมูลในทุกหัวข้อ Topic ได้ตามที่กำหนด เราจะเห็นได้ว่าในปัจจุบัน มีการนำ MQTT มาใช้อย่างแพร่หลาย เพราะข้อมูลมีขนาดเล็กกะทัดรัด สามารถกระจาย (Distribute) ข้อมูลในหัวข้อ Topic ต่างๆ ไปยังอุปกรณ์ (Subscribers) จำนวนมากได้อย่างรวดเร็ว ไม่ว่าอุปกรณ์เหล่านั้นจะอยู่ห่างไกลจากกันเพียงใดก็ตาม</p>
+              <p>ข้อดีของ MQTT ก็คือไม่ต้องเสียเวลาในการฟอร์เวิร์ดพอร์ต (Forward port) ให้กับอุปกรณ์ทุกชิ้นในระบบเน็ตเวิร์ก (ยกเว้นตัวโบรคเกอร์ที่ต้อง Forward port) เพื่อเปิดการสื่อสารทางไกลผ่านอินเตอร์เน็ต MQTT Server หรือโบรคเกอร์ (Broker) ยังทำหน้าที่เป็นตัวกลาง ซึ่งจะคอยตรวจสอบการรับส่งข้อมูลระหว่างอุปกรณ์ต่างๆ ที่เชื่อมต่อกันในระบบ เพื่อให้แน่ใจว่าอุปกรณ์ซับสไครบ์เบอร์ทุกชิ้นในระบบได้รับข้อมูลที่ส่งมาจากพับบลิเชอร์อย่างแน่นอน ถึงแม้ว่าในขณะที่พับบลิเชอร์กำลังส่งข้อมูลตามหัวข้อ Topic อยู่นั้น อุปกรณ์ที่เป็นซับสไครบ์เบอร์ของหัวข้อ Topic นั้นจะถูกปิด (Offline) อยู่ก็ตาม แต่เมื่ออุปกรณ์ที่เป็นซับสไครบ์เบอร์นั้นถูกเปิด (Online) กลับมาใช้งานอีกครั้ง โบรคเกอร์ (Broker) ก็จะส่งข้อมูลนั้นในหัวข้อ Topic นั้นไปให้กับอุปกรณ์ที่เป็นซับสไครบ์เบอร์ ซึ่งทำให้การสื่อสารรับส่งข้อมูลครบถ้วนสมบูรณ์ โดยมีขั้นตอนการติดตั้ง MQTT Server เพื่อทำหน้าที่เป็น Broker โดยมีขั้นตอนดังต่อไปนี้</p>
+      
+              <h2>ติดตั้ง Private MQTT Server</h2>
+              <ol>
+                  <li>ป้อนคำสั่งเพื่อ Update/Upgrade Raspbian และเริ่มบูทเครื่องใหม่:
+                      <pre><code>sudo apt-get update
+      sudo apt-get upgrade
+      sudo reboot</code></pre>
+                  </li>
+                  <li>เริ่มติดตั้งโปรแกรม Mosquitto (MQTT Server) และ MQTT Clients
+                      <ol>
+                          <li>SSH เข้าไปที่ Raspberry Pi และสร้างไดเร็กทอรีใหม่สำหรับไฟล์ชั่วคราว:
+                              <pre><code>mkdir mosquitto
+      cd mosquitto</code></pre>
+                          </li>
+                          <li>นำเข้า repository package signing key:
+                              <pre><code>wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+      sudo apt-key add mosquitto-repo.gpg.key</code></pre>
+                          </li>
+                          <li>ทำให้ repository ใช้งานได้กับ apt:
+                              <pre><code>cd /etc/apt/sources.list.d/
+      sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+      sudo apt-get update
+      sudo apt-cache search mosquito</code></pre>
+                          </li>
+                          <li>ติดตั้ง Mosquitto MQTT Broker และ MQTT Clients:
+                              <pre><code>sudo apt-get install mosquitto
+      sudo apt-get install mosquitto-clients</code></pre>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>ตรวจสอบสถานะของบริการ Mosquitto, Process และ Port เริ่มต้น (1883):
+                      <pre><code>service mosquitto status
+      ps -ef | grep mosq
+      netstat -tln | grep 1883</code></pre>
+                      หากคุณเห็นว่า Mosquitto service กำลังทำงานและฟังที่ TCP Port 1883, คุณมี MQTT Broker ที่ใช้งานได้</li>
+                  <li>แก้ไขไฟล์คอนฟิกเกอเรชั่น โดยเพิ่มบรรทัดใหม่ 3 บรรทัดที่ด้านล่างสุดของไฟล์ แล้วบันทึกการเปลี่ยนแปลงในไฟล์ โดยกดปุ่ม Ctrl+O เมื่อปรากฏชื่อไฟล์ ให้กดปุ่ม Enter เพื่อยอมรับ แล้วออกจากเทกซ์อิดิทเตอร์ โดยกดปุ่ม Ctrl+X:
+                      <pre><code>sudo nano /etc/mosquitto/mosquitto.conf
+      
+      allow_anonymous false
+      password_file /etc/mosquitto/pwfile
+      listener 1883</code></pre>
+                  </li>
+                  <li>สร้างยูสเซอร์ชื่อ mymqtt และกำหนดพาสเวิร์ดเป็น myraspi หรือพาสเวิร์ดอื่นๆ เก็บไว้ใน pwfile โดยป้อนคำสั่ง:
+                      <pre><code>sudo mosquitto_passwd -c /etc/mosquitto/pwfile mymqtt
+      Password: ป้อนพาสเวิร์ด myraspi
+      Reenter password: ป้อนพาสเวิร์ดยืนยัน myraspi</code></pre>
+                  </li>
+                  <li>ในขณะนี้ เราได้ติดตั้ง Mosquitto เสร็จเรียบร้อยแล้ว แต่จะต้องบูทเครื่องใหม่ เพื่อให้ Mosquitto เริ่มทำงาน:
+                      <pre><code>sudo reboot</code></pre>
+                  </li>
+                  <li>เริ่มทดสอบการทำงานของ MQTT Server หรือ Mosquitto โดยเราจะทดสอบด้วยการเรียกหน้าต่าง PuTTY ออกมา 2 หน้าต่าง เพื่อจำลองว่าเรามีอุปกรณ์ 2 ชิ้น ซึ่งหน้าต่างหนึ่งจะทำหน้าที่เป็นซับสไครบ์เบอร์หรือตัวรับข้อมูล (Subscriber) อีกหน้าต่างหนึ่งจะทำหน้าที่เป็นพับบลิเชอร์หรือตัวส่งข้อมูล (Publisher):
+                      <ol>
+                          <li>การรับข้อมูล (Subscriber) → ป้อนซับสไครบ์ Topic ชื่อ mynew/test:
+                              <pre><code>mosquitto_sub -d -u mymqtt -P myraspi -t mynew/test</code></pre>
+                          </li>
+                          <li>การส่งข้อมูล (Publisher) → ป้อนพับข้อมูล "ทดสอบ" ใน Topic ชื่อ mynew/test:
+                              <pre><code>mosquitto_pub -d -u mymqtt -P myraspi -t mynew/test -m "Test1234"</code></pre>
+                          </li>
+                      </ol>
+                  </li>
+                  <img src="Embeded2/2/t3.png" class="cen2">
+              </ol>
+    
+    </div>
+
+</body>
+</html>

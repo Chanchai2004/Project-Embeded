@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node-RED คือ อะไร</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="content">
+        <center><h2 style="color: red"><i class="fa fa-warning" style="font-size:20px;color:red"></i> ข้อตกลงผู้อ่าน <i class="fa fa-warning" style="font-size:20px;color:red"></i></h2>
+            <p style="color: red">***ข้อมูลจากบล็อกนี้จัดทำเมื่อวันที่ 27/07/2567***</p>
+            </center>
+    <h1>Node-RED คือ อะไร</h1>
+    <img src="Embeded3/1.png" class="cen">
+    <p>Node-RED เป็นเครื่องมือสำหรับนักพัฒนาโปรแกรมในการเชื่อมต่ออุปกรณ์ฮาร์ดแวร์เข้ากับ APIs (Application Programming Interface) ซึ่งเป็นการพัฒนาโปรแกรมแบบ Flow-Based Programming ที่มีหน้า UI สำหรับนักพัฒนาให้ใช้งานผ่าน Web Browser ทำให้การเชื่อมต่อเส้นทางการไหลของข้อมูลนั้นเป็นเรื่องง่าย เนื่องจาก Node-RED เป็น Flow-Based Programming นั้นทำให้เราแทบจะไม่ต้องเขียน Code ในการพัฒนาโปรแกรมเลย แค่เพียงเลือก Node มาวางแล้วเชื่อมต่อก็สามารถควบคุม I/O ได้ โดย Node-RED จะมี Node ให้เลือกใช้งานอย่างหลากหลาย สามารถสร้างฟังก์ชัน JavaScript ได้โดยใช้ Text Editor ที่มีอยู่ใน Node-RED และยังสามารถบันทึก Function, Templates, Flows เพื่อไปใช้งานกับงานอื่นต่อไป</p>
+    <p>Node-RED นั้นทำงานบน Node.js ทำให้เหมาะสำหรับการใช้งานกับ Raspberry Pi เนื่องจากใช้ทรัพยากรน้อย ขนาดไฟล์ไม่ใหญ่และ Node.js ยังทำหน้าที่เป็นตัวกลางให้ Raspberry Pi สามารถติดต่อกับ Web Browser และอุปกรณ์อื่นๆ ได้</p>
+    
+    <h2>การใช้งาน Node-RED เบื้องต้น สามารถแบ่งออกเป็นหลายหัวข้อหลัก ๆ ดังนี้:</h2>
+    <h3>1. การติดตั้ง Node-RED</h3>
+    <p>1.1 ติดตั้ง Node.js: Node-RED ต้องการ Node.js ในการทำงาน ควรติดตั้ง Node.js เวอร์ชันล่าสุด</p>
+    <p>1.2 ติดตั้ง Node-RED: ใช้คำสั่ง <code>npm install -g --unsafe-perm node-red</code> เพื่อติดตั้ง Node-RED ทั่วทั้งระบบ</p>
+    <p>1.3 เริ่มต้น Node-RED: ใช้คำสั่ง <code>node-red</code> เพื่อเริ่มต้นใช้งาน</p>
+    <img src="Embeded3/2.png" class="cen">
+    <h3>2. การเข้าสู่หน้าจัดการ Node-RED</h3>
+    <p>2.1 เข้าผ่านเว็บเบราว์เซอร์: เปิดเว็บเบราว์เซอร์และไปที่ <code>http://localhost:1880</code> เพื่อเข้าสู่หน้าจัดการ Node-RED</p>
+    <img src="Embeded3/3.png" class="cen">
+    <p>2.2 การใช้งาน Dashboard: ส่วนต่อประสานที่ใช้งานง่ายที่ช่วยให้สามารถสร้างและจัดการ flow ได้</p>
+    
+    <h3>3. การใช้งานโหนด (Nodes)</h3>
+    <p>3.1 โหนดอินพุต (Input Nodes): ใช้ในการรับข้อมูลเข้าสู่ระบบ เช่น Inject, HTTP Input</p>
+    <img src="Embeded3/4.png" class="cen">
+    <p>3.2 โหนดกระบวนการ (Processing Nodes): ใช้ในการประมวลผลข้อมูล เช่น Function, Change</p>
+    
+    <p>3.3 โหนดเอาต์พุต (Output Nodes): ใช้ในการส่งข้อมูลออกจากระบบ เช่น Debug, HTTP Response</p>
+    <img src="Embeded3/5.png" class="cen">
+    <h3>4. การสร้าง Flow เบื้องต้น</h3>
+    <p>4.1 การเพิ่มโหนด: ลากโหนดจากแถบเครื่องมือด้านซ้ายลงไปยังพื้นที่ทำงาน</p>
+    <p>4.2 การเชื่อมต่อโหนด: คลิกที่จุดเชื่อมต่อบนโหนดหนึ่งแล้วลากไปปล่อยที่จุดเชื่อมต่อของโหนดอีกตัวหนึ่ง</p>
+    <p>4.3 การตั้งค่าข้อมูลในโหนด: ดับเบิลคลิกที่โหนดเพื่อเปิดหน้าต่างตั้งค่า</p>
+    
+    <h3>5. การใช้งานโหนดฟังก์ชัน (Function Node)</h3>
+    <p>5.1 การเขียนโค้ด JavaScript: เขียนโค้ด JavaScript ภายในโหนดเพื่อจัดการข้อมูล</p>
+    <p>5.2 การเข้าถึงข้อมูลข้อความ (msg): ข้อมูลที่ส่งผ่านใน Node-RED จะถูกเก็บใน msg object</p>
+    
+    <h3>6. การบันทึกและทดสอบ Flow</h3>
+    <p>6.1 การบันทึก Flow: คลิกปุ่ม Deploy เพื่อบันทึกและเริ่มใช้งาน Flow ที่สร้างขึ้น</p>
+    <img src="Embeded3/6.png" class="cen">
+    <p>6.2 การตรวจสอบผลลัพธ์: ใช้โหนด Debug เพื่อตรวจสอบข้อมูลในแต่ละขั้นตอนของ Flow</p>
+    <img src="Embeded3/7.png" class="cen">
+    <h3>7. การเพิ่มโหนดเพิ่มเติม</h3>
+    <p>7.1 การติดตั้งโหนดจาก Node-RED Library: ไปที่เมนู Manage Palette เพื่อค้นหาและติดตั้งโหนดเพิ่มเติม</p>
+    <img src="Embeded3/8.png" class="cen">
+    <img src="Embeded3/9.png" class="cen">
+    <p>7.2 การใช้งานโหนดที่ติดตั้งเพิ่มเติม: โหนดใหม่ที่ติดตั้งจะปรากฏในแถบเครื่องมือ สามารถลากไปใช้งานได้ทันที</p>
+    
+    <h3>8. การสำรองข้อมูลและการกู้คืน Flow</h3>
+    <p>8.1 การสำรองข้อมูล Flow: สามารถสำรองข้อมูล Flow โดยการ export ไฟล์ JSON</p>
+    <p>8.2 การนำเข้า Flow: ใช้คำสั่ง import เพื่อกู้คืน Flow จากไฟล์ JSON ที่สำรองไว้</p>
+    <img src="Embeded3/10.png" class="cen">
+    <h3>9. การใช้งาน Node-RED Dashboard</h3>
+    <p>9.1 ติดตั้ง Node-RED Dashboard: ติดตั้งแพ็กเกจ <code>node-red-dashboard</code></p>
+    <p>9.2 การสร้าง UI Dashboard: ใช้โหนด UI เพื่อสร้างหน้าจอการแสดงผลและการควบคุม</p>
+    <img src="Embeded3/11.png" class="cen">
+    <h3>10. การแก้ไขปัญหาเบื้องต้น</h3>
+    <p>10.1 การตรวจสอบ Debug Log: ดูข้อมูลการ Debug ในหน้าจอ Debug หรือใน terminal ที่รัน Node-RED</p>
+    <img src="Embeded3/12.png" class="cen">
+    <p>10.2 การจัดการกับ Error: การใช้โหนด Catch เพื่อจับข้อผิดพลาดและดำเนินการตามที่กำหนด</p>
+    
+    <p>การเข้าใจและปฏิบัติตามหัวข้อเหล่านี้จะช่วยให้คุณเริ่มต้นใช้งาน Node-RED ได้อย่างมีประสิทธิภาพ หากต้องการข้อมูลเชิงลึกหรือมีปัญหาใด ๆ สามารถสอบถามเพิ่มเติมได้ครับ!</p>
+    
+    <h2>Node-RED UI</h2>
+    <p>แสดงข้อมูลที่ได้ทำการทดสอบ</p>
+    <p>1. Import Nodes มาจากลิงค์นี้ <a href="https://github.com/SChinnaphat/Node-RED_UI/blob/master/LED_Slider">https://github.com/SChinnaphat/Node-RED_UI/blob/master/LED_Slider</a> จะได้ Nodes ดังรูป</p>
+    
+    <pre>
+<code>[
+    {
+        "id": "b2848cd6.ca5c7",
+        "type": "ui_slider",
+        "z": "5b90197.2d300e8",
+        "tab": "5969fd52.22b424",
+        "name": "Slider",
+        "topic": "",
+        "group": "Control LED",
+        "order": "2",
+        "min": "0",
+        "max": "100",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "1cca457a.60fb5b",
+                "732721f2.32913",
+                "3c7de1d6.58b99e",
+                "869c189f.bbbd18"
+            ]
+        ]
+    },
+    {
+        "id": "1cca457a.60fb5b",
+        "type": "ui_gauge",
+        "z": "5b90197.2d300e8",
+        "tab": "5969fd52.22b424",
+        "name": "Gauge",
+        "group": "Control LED",
+        "order": "3",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "x": 603,
+        "y": 188,
+        "wires": []
+    },
+    {
+        "id": "732721f2.32913",
+        "type": "ui_chart",
+        "z": "5b90197.2d300e8",
+        "tab": "5969fd52.22b424",
+        "name": "",
+        "group": "Control LED",
+        "order": "4",
+        "interpolate": "linear",
+        "nodata": "No Data",
+        "removeOlder": 1,
+        "removeOlderUnit": "86400",
+        "x": 603,
+        "y": 294,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3c7de1d6.58b99e",
+        "type": "rpi-gpio out",
+        "z": "5b90197.2d300e8",
+        "name": "LED",
+        "pin": "40",
+        "set": "",
+        "level": "0",
+        "out": "pwm",
+        "x": 606,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "828cc789.3d3b08",
+        "type": "function",
+        "z": "5b90197.2d300e8",
+        "name": "Function",
+        "func": "if(msg.payload == \"true\"){\n msg.payload = 1;\n}\nelse{\n msg.payload = 0;\n} \nreturn msg;",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "b2848cd6.ca5c7"
+            ]
+        ]
+    },
+    {
+        "id": "58638633.9de238",
+        "type": "ui_switch",
+        "z": "5b90197.2d300e8",
+        "tab": "5969fd52.22b424",
+        "name": "Switch",
+        "topic": "",
+        "group": "Control LED",
+        "order": 1,
+        "onvalue": "true",
+        "offvalue": "false",
+        "x": 173,
+        "y": 377,
+        "wires": [
+            [
+                "828cc789.3d3b08"
+            ]
+        ]
+    },
+    {
+        "id": "869c189f.bbbd18",
+        "type": "function",
+        "z": "5b90197.2d300e8",
+        "name": "SetSwitch",
+        "func": "if(msg.payload > 0)\n msg.payload = 1;\nelse \n msg.payload = 0;\n \nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 182,
+        "y": 250,
+        "wires": [
+            [
+                "58638633.9de238"
+            ]
+        ]
+    },
+    {
+        "id": "5969fd52.22b424",
+        "type": "ui_tab",
+        "z": "",
+        "name": "TEST1",
+        "icon": "dashboard",
+        "order": "1"
+    }
+]
+</code>
+    </pre>
+    <img src="Embeded3/13.png" class="cen">
+
+    <p>2. เมื่อเข้าไปดูหน้า UI ก็จะได้ UI ดังรูป</p>
+    <img src="Embeded3/14.png" class="cen">
+    <img src="Embeded3/15.png" class="cen">
+    <p>และในส่วนของ Node rpi gpio ให้เรากําหนด Pin 40 GPIO 21 และ Type เป็น PWM Output ซึ่งจะทําให้
+        เราสามารถควบคุมระดับความสว่างได้ 
+        </p>
+    <p>***เพิ่มเติม***<br>GPIO</p>
+    <img src="Embeded3/16.webp" class="cen">
+
+    <h2>Node-RED to LINE notify</h2>
+    <h3>1. ติดตั้ง</h3>
+    <p>npm install node-red-contrib-line-notify</p>
+    <h3>2. รับโทเค็นการเข้าถึงด้วย LINE Notify และตั้งค่าไว้ในโหนด linetoken>> <a href="https://notify-bot.line.me">https://notify-bot.line.me</a></p>
+    <img src="Embeded3/160.png" class="cen">
+    <img src="Embeded3/161.png" class="cen">
+    <img src="Embeded3/162.png" class="cen">
+    <h3>3. import code ลง node-red</h3>
+    
+    <pre>
+<code>[
+    {
+        "id": "50d97bcf.d02684",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8cb66889.d96b28",
+        "type": "http request",
+        "z": "50d97bcf.d02684",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://notify-api.line.me/api/notify",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "6d47b0ce.054b2"
+            ]
+        ]
+    },
+    {
+        "id": "6d47b0ce.054b2",
+        "type": "debug",
+        "z": "50d97bcf.d02684",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "51ef834a.3d95ec",
+        "type": "function",
+        "z": "50d97bcf.d02684",
+        "name": "Message",
+        "func": "msg.token = 'Your_Token_This';\nmsg.message = 'Hello';\nmsg.stickerPackageId = 1;\nmsg.stickerId = 106;\n\nmsg.headers = {\n 'content-type':'application/x-www-form-urlencoded',\n 'Authorization':'Bearer ' + msg.token\n};\nmsg.payload = {\n 'message': msg.message,\n 'stickerPackageId': msg.stickerPackageId,\n 'stickerId': msg.stickerId\n};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "8cb66889.d96b28"
+            ]
+        ]
+    },
+    {
+        "id": "75e765f7.d089fc",
+        "type": "inject",
+        "z": "50d97bcf.d02684",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 120,
+        "wires": [
+            [
+                "51ef834a.3d95ec"
+            ]
+        ]
+    }
+]
+</code>
+    </pre>
+    <img src="Embeded3/17.png" class="cen">
+
+    <p>ใน function Message</p>
+    <img src="Embeded3/18.png" class="cen">
+    <p>ผลลัพธ์</p>
+    <img src="Embeded3/19.jpg" class="cen">
+    
+    <h3>***เพิ่มเติม***</h3>
+    <p>สามารถเลือกสติกเกอร์ไลน์ ด้วยการดู STKID และ STKPKID <a href="https://www.arduinoall.net/arduino-tutor/sticker_list.pdf">https://www.arduinoall.net/arduino-tutor/sticker_list.pdf</a></p>
+    <img src="Embeded3/20.png" class="cen">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Siemens LOGO!8</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="content">
+            <h1>Siemens LOGO!8</h1>
+            <img src="Embeded9/01.jpg" class="cen">
+            <p>Siemens LOGO!8 เป็นตัวควบคุมแบบโปรแกรม (PLC) ขนาดเล็กที่ผลิตโดย
+                Siemens ซึ่งถูกออกแบบมาเพื่อใช้ในงานอุตสาหกรรมและระบบควบคุมต่าง
+                ๆ ที่มีความซับซ้อนต่ำถึงปานกลาง Siemens LOGO!8
+                เหมาะสำหรับงานอัตโนมัติที่ต้องการการควบคุมแบบง่าย เช่น
+                ระบบแสงสว่าง, ระบบประปา, ระบบ HVAC (การควบคุมอุณหภูมิ),
+                และงานอัตโนมัติในบ้านหรืออาคาร
+
+                LOGO!8 มาพร้อมกับฟีเจอร์ที่สำคัญ เช่น:
+
+                ขนาดเล็กและติดตั้งง่าย: มีขนาดกะทัดรัด
+                ใช้พื้นที่น้อยในการติดตั้ง
+                การเขียนโปรแกรมง่าย:
+                สามารถเขียนโปรแกรมได้ผ่านแผนผังบล็อกฟังก์ชัน (FBD)
+                หรือแบบแผนผังบันได (Ladder Diagram)
+                อินเทอร์เฟซการเชื่อมต่อ: รองรับการเชื่อมต่อเครือข่าย (Ethernet)
+                สำหรับการควบคุมและติดตามระยะไกล
+                หน้าจอแสดงผลในตัว:
+                รุ่นที่มีหน้าจอสามารถแสดงข้อมูลและสั่งงานได้โดยตรง
+                การใช้งานร่วมกับระบบคลาวด์:
+                รองรับการเชื่อมต่อกับระบบคลาวด์เพื่อควบคุมและตรวจสอบข้อมูลจากระยะไกลผ่านอินเทอร์เน็ต
+                Siemens LOGO!8
+                ได้รับความนิยมเนื่องจากความยืดหยุ่นและความสะดวกในการใช้งานในโปรเจ็กต์การควบคุมอัตโนมัติหลายประเภท</p>
+
+            <div class="section">
+                <h2>1. LOGO8_t01_InputOutput</h2>
+                <p><strong>1. เพิ่มอุปกรณ์ (Add Device)</strong></p>
+                <ul>
+                    <li>ไปที่ Network View</li>
+                    <li>คลิกที่ Add New Device</li>
+                    <li>เลือกอุปกรณ์เป็น LOGO! 8_3_1</li>
+                    <li>กรอก IP Address, SN, และ GW</li>
+                </ul>
+                <img src="Embeded9/01.PNG" class="cen">
+
+                <p><strong>2. แก้ไขแผนผังบล็อกฟังก์ชัน (FBD)</strong></p>
+                <ul>
+                    <li>เปิดหน้าต่าง FBD</li>
+                    <li>แก้ไขบล็อกฟังก์ชันสำหรับการรับ/ส่งข้อมูล
+                        (Input/Output)</li>
+                    <li>บันทึกเป็น "LOGO8_t01_InputOutput"</li>
+                </ul>
+                <img src="Embeded9/02.PNG" class="cen">
+
+                <p><strong>3. อัปโหลดโปรเจคไปยัง LOGO!8</strong></p>
+                <ul>
+                    <li>ไปที่ Tools</li>
+                    <li>เลือก Transfer → PC to LOGO8</li>
+                    <li>กรอก LOGO! IP Address และกด Ok</li>
+                </ul>
+                <img src="Embeded9/03.PNG" class="cen">
+
+                <p><strong>4. เริ่มการทำงาน (Run Mode)</strong></p>
+                <ul>
+                    <li>เปลี่ยนไปที่ Run Mode เพื่อเริ่มต้นระบบ</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>2. LOGO8_t02a_pressOnpressOff_Ladder (Toggle with
+                    Ladder)</h2>
+                <p><strong>1. สร้างโปรเจคใหม่</strong></p>
+                <ul>
+                    <li>สร้างโปรเจคใหม่โดยใช้แผนผังบันได (Ladder Diagram)</li>
+                    <li>เพิ่มอุปกรณ์ LOGO!8 และเซ็ตค่าต่างๆ</li>
+                </ul>
+                <img src="Embeded9/04.PNG" class="cen">
+
+                <p><strong>2. เพิ่มส่วนประกอบสวิตซ์สลับ (Toggle
+                        Switch)</strong></p>
+                <ul>
+                    <li>เพิ่มคอนแทค (Contacts) และขดลวดรีเลย์ (Relay Coil)
+                        ในแผนผังบันได</li>
+                    <li>เลือกการทำงานของคอนแทคเป็น Make Contact สำหรับเปิดและ
+                        Break Contact สำหรับปิด</li>
+                </ul>
+                <img src="Embeded9/05.PNG" class="cen">
+
+                <p><strong>3. อัปโหลดและรันโปรเจค</strong></p>
+                <ul>
+                    <li>อัปโหลดโปรเจคไปยัง LOGO!8 และเปลี่ยนโหมดไปที่ Run
+                        Mode</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>3. LOGO8_t02b_pressOnpressOff (Toggle with FBD)</h2>
+                <p><strong>1. สร้างโปรเจคใหม่โดยใช้ FBD</strong></p>
+                <ul>
+                    <li>สร้างโปรเจคใหม่และเลือก Function Block Diagram
+                        (FBD)</li>
+                    <li>เพิ่มอุปกรณ์และเซ็ตค่าตามต้องการ</li>
+                </ul>
+                <img src="Embeded9/06.PNG" class="cen">
+
+                <p><strong>2. เพิ่มบล็อกสำหรับสวิตซ์สลับ (Toggle
+                        Switch)</strong></p>
+                <ul>
+                    <li>เพิ่มบล็อกฟังก์ชัน เช่น AND (Edge), XOR, และ Output
+                        เพื่อสร้างการทำงานแบบสลับ</li>
+                </ul>
+
+                <p><strong>3. อัปโหลดและรันโปรเจค</strong></p>
+                <ul>
+                    <li>อัปโหลดไปยัง LOGO!8 และเปลี่ยนไปที่ Run Mode</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>4. LOGO8_t03_pressOn_HoldOff</h2>
+                <p><strong>1. แก้ไข FBD</strong></p>
+                <ul>
+                    <li>สร้างโปรเจคและแก้ไข FBD สำหรับอินพุต I1 และ I2</li>
+                    <li>ตั้งค่าให้เอาต์พุตเปิดค้างเมื่อกดปุ่ม Hold (2 วินาที) On
+                        และปิดหลังจากนั้น Hold (4 วินาที) Off</li>
+                </ul>
+                <img src="Embeded9/07.PNG" class="cen">
+
+                <p><strong>2. อัปโหลดและรันโปรเจค</strong></p>
+                <ul>
+                    <li>อัปโหลดไปยัง LOGO!8 และเปลี่ยนโหมดไปที่ Run Mode</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>5. LOGO8_t04_Using_Cursor</h2>
+                <p><strong>1. ใช้ปุ่มเคอร์เซอร์สำหรับควบคุม</strong></p>
+                <ul>
+                    <li>กดปุ่ม ESC + Cursor Key เพื่อเลือกอินพุต</li>
+                    <li>แก้ไขข้อความและแสดงชื่อสมาชิกทั้งหมดบนหน้าจอ</li>
+                </ul>
+                <img src="Embeded9/08.PNG" class="cen">
+
+                <p><strong>2. แก้ไข FBD สำหรับการควบคุม Q0 และ Q1</strong></p>
+                <ul>
+                    <li>ตั้งค่าการเปิด/ปิด Up/Down = On/Off Q0 และ Left/Right =
+                        On/Off Q1</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>6. LOGO8_t05a_Count_Show</h2>
+                <p><strong>1. ตั้งค่าตัวนับ (Counter)</strong></p>
+                <ul>
+                    <li>แก้ไข FBD
+                        เพื่อสร้างตัวนับที่แสดงผลการเพิ่มหรือลดค่าของอินพุต</li>
+                </ul>
+                <img src="Embeded9/09.PNG" class="cen">
+
+                <p><strong>2. อัปโหลดและรันโปรเจค</strong></p>
+                <ul>
+                    <li>อัปโหลดไปยัง LOGO!8 และเปลี่ยนโหมดไปที่ Run Mode</li>
+                </ul>
+                <img src="Embeded9/10.PNG" class="cen">
+            </div>
+
+            <div class="section">
+                <h2>7. LOGO8_t05b_Count_SpeedUp</h2>
+                <p><strong>1. ตั้งค่าความเร็วในตัวนับ</strong></p>
+                <ul>
+                    <li>เพิ่มฟังก์ชันการปรับความเร็วให้กับตัวนับใน FBD</li>
+                </ul>
+
+                <p><strong>2. อัปโหลดและรันโปรเจค</strong></p>
+                <ul>
+                    <li>อัปโหลดไปยัง LOGO!8
+                        และทดสอบการแสดงผลความเร็วที่เพิ่มขึ้น/ลดลง</li>
+                </ul>
+                <img src="Embeded9/11.PNG" class="cen">
+                <img src="Embeded9/09.PNG" class="cen">
+            </div>
+        </div>
+
+    </body>
+</html>

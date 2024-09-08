@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Left Frame</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #28a745; /* Green background */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .download-btn i {
+            margin-right: 8px; /* Space between icon and text */
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="content">
+        <center><h2 style="color: red"><i class="fa fa-warning" style="font-size:20px;color:red"></i> ข้อตกลงผู้อ่าน <i class="fa fa-warning" style="font-size:20px;color:red"></i></h2>
+            <p style="color: red">***ข้อมูลจากบล็อกนี้จัดทำเมื่อวันที่ 10/08/2567***</p>
+            </center>
+    <h1 class="main-title">LINE Bot on Raspberry Pi</h1>
+    
+    <p class="paragraph">
+        ChatBot Line คือบัญชี LINE ที่ถูกสร้างขึ้นเพื่อให้สามารถตอบโต้กับผู้ใช้ได้โดยอัตโนมัติ ลดภาระการตอบคำถามซ้ำๆ
+        และเพิ่มความสะดวกสบายให้กับผู้ดูแล ผู้ที่ยังใหม่กับการสร้าง ChatBot อาจกังวลว่าจะต้องเขียนโค้ดหรือโปรแกรมอย่างไร
+        แต่ต้องบอกว่าด้วย <strong>Line Messaging API</strong> และ <strong>Dialogflow</strong> การสร้าง ChatBot นั้นง่ายดายอย่างไม่น่าเชื่อ
+    </p>
+    <img src="Embeded4/bot.png" class="cen">
+    <p class="paragraph">
+    LINE Official Account ที่นำ Messaging API มาใช้ในการพัฒนาการทำงานของ LINE Official Account 
+    ให้มีความสามารถในการโต้ตอบกับผู้ใช้ได้ตลอดเวลา โดยไม่จำเป็นต้องรอคนตอบ ซึ่งจะมีประโยชน์สำหรับผู้ที่เป็นแอดมินมากขึ้น 
+    เพราะไม่ต้องมาตอบคำถามซ้ำๆวันละหลายๆรอบ
+    
+
+การสร้าง LINE Bot โดยใช้ Dialogflow
+ประกอบด้วย 2 ส่วน คือ
+
+
+1.LINE Official Account เป็นส่วนที่เราต้องสร้างขึ้นเพื่อใช้ในการทำ LINE Bot ที่ไว้ใช้ในการโต้ตอบกับ Dialogflow สามารถกำหนดได้ทั้ง สติกเกอร์ ,รูปภาพ ,ข้อความ และ วีดีโอ
+
+ 
+
+2.Dialogflow เป็นแพลตฟอร์มที่สามารถช่วยในการพัฒนา LINE Bot ได้สามารถแบ่งได้ 2 กรณีดังนี้
+
+1.การเขียน Dialogflow ขั้นพื้นฐานไม่จำเป็นต้องทำการเขียนโปรแกรมเลย เนื่องจากเราสามารถพิมพ์ข้อความต่างๆที่ใช้สำหรับการถาม-ตอบได้เลย
+
+
+2.การเขียน Dialogflow ขั้นสูงอาจจะมีการเขียนโปรแกรมเพื่อเพิ่มความสามารถของ LINE Bot ได้ เช่น การส่ง Location ,การส่งรูปภาพ , การส่งสติกเกอร์ เป็นต้น
+</p>
+    <h2 class="section-title">การสร้าง UI ด้วย Node-RED</h2>
+    
+    <h3 class="section-subtitle">Node-RED Dashboard</h3>
+    <p class="paragraph">
+        Node-RED Dashboard คือหน้าเว็บที่ใช้สำหรับควบคุมและสังเกตค่าต่างๆ ที่เราสนใจ 
+        ไม่ว่าจะเป็นการสั่งงานผ่าน MQTT, การพล็อตกราฟเพื่อแสดงการเปลี่ยนแปลง, 
+        หรือการแสดงสถานะของอุปกรณ์ต่างๆ สิ่งสำคัญคือ <em>Node-RED Dashboard</em> 
+        ทำงานแบบเรียลไทม์ (Real Time) โดยไม่ต้องรีเฟรชหน้าเว็บเมื่อมีการอัปเดต
+    </p>
+    
+    <ol class="ordered-list">
+        <li>
+            <h4 class="section-subtitle">Download Dashboard UI</h4>
+            <img src="Embeded4/1.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ติดตั้ง Node-red-dashboard และ Node-red-contrib-ui-led</h4>
+            <img src="Embeded4/2.png" class="cen">
+            <img src="Embeded4/3.png" class="cen">
+            
+            <p class="paragraph">หลังจากดาวน์โหลดแล้ว จะมีโหนดเพิ่มขึ้นตามตัวอย่าง</p>
+            <img src="Embeded4/4.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">Set MQTT ให้เป็น Server</h4>
+            <img src="Embeded4/5.png" class="cen">
+            
+            <p class="paragraph">เซิร์ฟเวอร์: <code>broker.mqtt.cool:1883</code></p>
+        </li>
+        <li>
+            <h4 class="section-subtitle">เข้าเว็บทดสอบ</h4>
+            <p class="paragraph">
+                เข้าไปที่ <a href="https://testclient-cloud.mqtt.cool/" class="link">testclient-cloud.mqtt.cool</a> 
+                เพื่อสร้าง topic เหมือนกับใน Node-RED แล้วลองทดสอบการทำงาน
+            </p>
+            <img src="Embeded4/6.png" class="cen">
+        </li>
+    </ol>
+    
+    <h3 class="section-subtitle">การติดตั้งและตั้งค่า DHT22</h3>
+    <ol class="ordered-list">
+        <li>
+            <h4 class="section-subtitle">ติดตั้ง dht22</h4>
+            <p class="paragraph">ใช้ <code>Node-red-contrib-dht-sensor</code></p>
+            <img src="Embeded4/7.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">สร้าง 2 topic</h4>
+            <p class="paragraph">เพื่อส่งค่าอุณหภูมิและความชื้น (Temp และ Humid)</p>
+            <img src="Embeded4/8.png" class="cen">
+            <img src="Embeded4/9.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Function</h4>
+            <p class="paragraph">เพื่อแยกค่า Humid และ Temp แล้วส่งไปที่ broker</p>
+            <img src="Embeded4/10.png" class="cen">
+        </li>
+    </ol>
+
+    <h3 class="section-subtitle">การสร้าง Dashboard</h3>
+    <ol class="ordered-list">
+        <li>
+            <h4 class="section-subtitle">สร้าง Dashboard ด้วยโหนด Chart และ Gauge</h4>
+            <p class="paragraph">เพื่อแสดงค่าที่รับมาจาก broker</p>
+            <img src="Embeded4/11.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Chart Node และ Gauge Node</h4>
+            <img src="Embeded4/12.png" class="cen">
+            <img src="Embeded4/13.png" class="cen">
+        </li>
+    </ol>
+
+    <h3 class="section-subtitle">การตั้งค่า Chat Bot</h3>
+    <ol class="ordered-list">
+        <li>
+            <h4 class="section-subtitle">เข้าสู่เว็บไซต์</h4>
+            <p class="paragraph">
+                เข้าไปที่ <a href="https://developers.line.biz/en/" class="link">developers.line.biz</a>
+            </p>
+            <img src="Embeded4/14.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">Create Providers</h4>
+            <img src="Embeded4/15.png" class="cen">
+            <img src="Embeded4/16.png" class="cen">
+            <img src="Embeded4/17.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ติดตั้ง Ngrok</h4>
+            <p class="paragraph">
+                ติดตั้งจาก <a href="https://ngrok.com/docs/guides/device-gateway/raspberry-pi/" class="link">ngrok.com</a> 
+                ใช้คำสั่ง:
+                <pre>
+wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz
+sudo tar xvzf ./ngrok-v3-stable-linux-arm64.tgz -C /usr/local/bin
+ngrok authtoken NGROK_AUTHTOKEN
+                </pre>
+                แล้วใช้คำสั่ง <code>ngrok http 192.xxx.xxx.xxx:1880</code> เพื่อรับ Forwarding
+            </p>
+            <img src="Embeded4/18.png" class="cen">
+            <img src="Embeded4/19.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Webhook</h4>
+            <p class="paragraph">นำ Forwarding ที่ได้มาใส่ใน Webhook setting (ใส่ /Callback)</p>
+            <img src="Embeded4/20.png" class="cen">
+            <img src="Embeded4/21.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">คัดลอก Access Token และ Channal secret</h4>
+            <img src="Embeded4/22.png" class="cen">
+            <img src="Embeded4/23.png" class="cen">
+        </li>
+    </ol>
+
+    <h3 class="section-subtitle">การติดตั้ง Line Bot และการตั้งค่า</h3>
+    <ol class="ordered-list">
+        <li>
+            <h4 class="section-subtitle">ติดตั้ง Line Bot</h4>
+            <p class="paragraph">
+                ใช้ <code>Node-red-contrib-linebot</code> และ <code>Node-red-contib-line-notify</code> 
+                (สามารถดูวิธีการใช้งาน Node-RED ร่วมกับ LINE Notify จากเมนู PI+Node-RED)
+            </p>
+            <img src="Embeded4/24.png" class="cen">
+            <img src="Embeded4/25.png" class="cen">
+            
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Node Line กับ MQTT</h4>
+            <img src="Embeded4/26.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ใส่ Token</h4>
+            <p class="paragraph">ใส่ Token ที่ได้มาจากการสร้าง Line Notify ใน Node Line Notify</p>
+            <img src="Embeded4/27.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Node HTTP</h4>
+            <img src="Embeded4/28.png" class="cen">
+        </li>
+        <li>
+            <h4 class="section-subtitle">ตั้งค่า Access Token ใน Node LineBot-Client</h4>
+            <img src="Embeded4/29.png" class="cen">
+        </li>
+    </ol>
+
+    <h3 class="section-subtitle">รวมทุก Node เข้าด้วยกัน</h3>
+    <img src="Embeded4/30.png" class="cen">
+    <ol class="ordered-list">
+        
+        <li>
+            <h4 class="section-subtitle">Set Chat Bot</h4>
+            <img src="Embeded4/31.png" class="cen">
+            
+        </li>
+        <li>
+            <h4 class="section-subtitle">ผลลัพธ์</h4>
+            <p class="paragraph">หน้า ui เข้า 192.168.xxx.xxx/ ui</p>
+            <img src="Embeded4/32.png" class="cen">
+            <img src="Embeded4/33.jpg" class="cen">
+            <center><p class="paragraph" style="color:red">***เพิ่มเติม***<br>เมื่อ chat bot greeting ทุกครั้งที่ส่งข้อความ ให้ปิด Auto-response messages greeting</p></center>
+            <img src="Embeded4/34.png" class="cen">
+            <img src="Embeded4/35.png" class="cen">
+        </li>
+    </ol>
+
+    <h3 class="section-subtitle">CODE</h3>
+    <ol class="ordered-list">
+
+            <h4 class="section-subtitle">Code สำหรับ Import</h4>
+            <center><a href="https://drive.google.com/file/d/1VJ5B6udZFl7oe9BSCzNW7_-PNdwIFwlq/view?usp=sharing" class="download-btn" download>
+                <i class="fas fa-download"></i> Download File json
+            </a></center>
+            <pre>
+                [
+                {
+                    "id": "373850353c629791",
+                    "type": "tab",
+                    "label": "Flow 1",
+                    "disabled": false,
+                    "info": ""
+                },
+                {
+                    "id": "4acbbca77298d99c",
+                    "type": "mqtt in",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "C",
+                    "qos": "0",
+                    "datatype": "auto",
+                    "broker": "ab558f1953e070ce",
+                    "nl": false,
+                    "rap": true,
+                    "rh": 0,
+                    "inputs": 0,
+                    "x": 130,
+                    "y": 380,
+                    "wires": [
+                        [
+                            "548391f872bd7efa"
+                        ]
+                    ]
+                },
+                {
+                    "id": "e16a461cc71e2694",
+                    "type": "ui_led",
+                    "z": "373850353c629791",
+                    "order": 2,
+                    "group": "67163726.764658",
+                    "width": "5",
+                    "height": "2",
+                    "label": "Input Monitor",
+                    "labelPlacement": "left",
+                    "labelAlignment": "center",
+                    "colorForValue": [
+                        {
+                            "color": "#ff0000",
+                            "value": "true",
+                            "valueType": "bool"
+                        },
+                        {
+                            "color": "#008000",
+                            "value": "false",
+                            "valueType": "bool"
+                        }
+                    ],
+                    "allowColorForValueInMessage": false,
+                    "shape": "circle",
+                    "showGlow": true,
+                    "name": "Input Monitor",
+                    "x": 850,
+                    "y": 400,
+                    "wires": []
+                },
+                {
+                    "id": "51f28be6e2c16641",
+                    "type": "ui_switch",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "label": "Output Control",
+                    "tooltip": "",
+                    "group": "67163726.764658",
+                    "order": 2,
+                    "width": "5",
+                    "height": "1",
+                    "passthru": true,
+                    "decouple": "false",
+                    "topic": "topic",
+                    "topicType": "msg",
+                    "style": "",
+                    "onvalue": "ON1",
+                    "onvalueType": "str",
+                    "onicon": "",
+                    "oncolor": "",
+                    "offvalue": "OFF1",
+                    "offvalueType": "str",
+                    "officon": "",
+                    "offcolor": "",
+                    "animate": false,
+                    "className": "",
+                    "x": 160,
+                    "y": 520,
+                    "wires": [
+                        [
+                            "a0d5c1d6e106c1b9"
+                        ]
+                    ]
+                },
+                {
+                    "id": "548391f872bd7efa",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "func": "\nvar stsNow = context.global.sts;\nif (msg.payload == 'true') {\n stsNow = true;\n}\nif (msg.payload == 'false') {\n stsNow = false;\n}\ncontext.global.sts = stsNow;\nmsg.payload = stsNow;\n\nreturn msg;",
+                    "outputs": 1,
+                    "timeout": "",
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 300,
+                    "y": 380,
+                    "wires": [
+                        [
+                            "e16a461cc71e2694",
+                            "9089eafb01f3f7a9"
+                        ]
+                    ]
+                },
+                {
+                    "id": "891facd3c7818882",
+                    "type": "line-notify",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "message": "Sensor Active",
+                    "contentType": "message",
+                    "imageThumbnail": "",
+                    "imageUrl": "",
+                    "sticker": "default",
+                    "stickerPackageId": "11",
+                    "stickerId": "1",
+                    "silent": false,
+                    "creds": "016576f59f983362",
+                    "x": 580,
+                    "y": 320,
+                    "wires": [
+                        [
+                            "0dc07fedf974b066"
+                        ]
+                    ]
+                },
+                {
+                    "id": "0dc07fedf974b066",
+                    "type": "http request",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "method": "POST",
+                    "ret": "txt",
+                    "paytoqs": "ignore",
+                    "url": "https://notify-api.line.me/api/notify",
+                    "tls": "",
+                    "persist": false,
+                    "proxy": "",
+                    "insecureHTTPParser": false,
+                    "authType": "",
+                    "senderr": false,
+                    "headers": [],
+                    "x": 730,
+                    "y": 320,
+                    "wires": [
+                        [
+                            "606e7432cadb0fc9"
+                        ]
+                    ]
+                },
+                {
+                    "id": "606e7432cadb0fc9",
+                    "type": "debug",
+                    "z": "373850353c629791",
+                    "name": "dasdsadads",
+                    "active": false,
+                    "tosidebar": true,
+                    "console": false,
+                    "tostatus": false,
+                    "complete": "payload",
+                    "targetType": "msg",
+                    "statusVal": "",
+                    "statusType": "auto",
+                    "x": 910,
+                    "y": 320,
+                    "wires": []
+                },
+                {
+                    "id": "9089eafb01f3f7a9",
+                    "type": "switch",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "property": "payload",
+                    "propertyType": "msg",
+                    "rules": [
+                        {
+                            "t": "eq",
+                            "v": "1",
+                            "vt": "str"
+                        }
+                    ],
+                    "checkall": "true",
+                    "repair": false,
+                    "outputs": 1,
+                    "x": 430,
+                    "y": 320,
+                    "wires": [
+                        [
+                            "891facd3c7818882"
+                        ]
+                    ]
+                },
+                {
+                    "id": "45f3087dc73926f5",
+                    "type": "linebot-client",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "channelAccessToken": "PNa6W6QX+exd5VzLyIW3BzIgPLg+AIwMbrZ83GGb/4t/egG9bzsBiBaQfMYAL1VEUAGEH6eEYuTfMTWfO7/M34BXeDHWFY9/2CZbcdmcyZQ3heF1IUsv/dJhm6hiU6YO9LZkK8zHw0KAiCpLCOYXAwdB04t89/1O/w1cDnyilFU=",
+                    "channelSecret": "208768f2306113007a63c71a31468d09",
+                    "x": 550,
+                    "y": 640,
+                    "wires": [
+                        [
+                            "65e8694e7881213e"
+                        ]
+                    ]
+                },
+                {
+                    "id": "d6a0d5be3e3f6bbe",
+                    "type": "http in",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "url": "/callback",
+                    "method": "post",
+                    "upload": false,
+                    "swaggerDoc": "",
+                    "x": 160,
+                    "y": 640,
+                    "wires": [
+                        [
+                            "8a6d2556e52f6657"
+                        ]
+                    ]
+                },
+                {
+                    "id": "8a6d2556e52f6657",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "func": "var receive_msg = msg.payload;\n\n\nif(receive_msg.events[0].message.type==\"text\")\n{\n    if(receive_msg.events[0].message.text==\"Hello\")\n    {\n        reply = {type:'text', text:\"Hello to\"};\n    }\n    else if(receive_msg.events[0].message.text==\"Tempp\")\n    {\n        reply = {type:'text', text: context.global.tempp};\n        // reply = {type:'text', text: tempp};\n    }\n    else if(receive_msg.events[0].message.text==\"Humid\")\n    {\n        reply = {type:'text', text: context.global.humid};\n    }\n    else if(receive_msg.events[0].message.text==\"Sensor\")\n    {\n        var xSensor = 'Sensor Off'\n        if(context.global.ctrl == true){xSensor = 'Sensor On'}\n        reply = {type:'text', text: xSensor};\n    }\n    else if(receive_msg.events[0].message.text==\"On\")\n    {\n        context.global.ctrl = true;\n        reply = {type:'text', text: \"Ok on\"};\n    }\n    else if(receive_msg.events[0].message.text==\"Off\")\n    {\n        context.global.ctrl = false;\n        reply = {type:'text', text: \"Ok Off\"};\n    }\n    else\n    {\n        reply = {type:'text', text:\"i don't know\"};\n    }\n}\n\nvar value = [receive_msg,reply];\nmsg.payload = value;\nreturn msg;",
+                    "outputs": 1,
+                    "timeout": "",
+                    "noerr": 8,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 380,
+                    "y": 640,
+                    "wires": [
+                        [
+                            "45f3087dc73926f5"
+                        ]
+                    ]
+                },
+                {
+                    "id": "3dda9ba08558962b",
+                    "type": "inject",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "props": [
+                        {
+                            "p": "payload"
+                        },
+                        {
+                            "p": "topic",
+                            "vt": "str"
+                        }
+                    ],
+                    "repeat": "10",
+                    "crontab": "",
+                    "once": false,
+                    "onceDelay": 0.1,
+                    "topic": "",
+                    "payload": "",
+                    "payloadType": "date",
+                    "x": 170,
+                    "y": 580,
+                    "wires": [
+                        [
+                            "82a1118e11e4f860"
+                        ]
+                    ]
+                },
+                {
+                    "id": "82a1118e11e4f860",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "func": "msg.payload = context.global.ctrl\nreturn msg;",
+                    "outputs": 1,
+                    "timeout": "",
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 380,
+                    "y": 580,
+                    "wires": [
+                        [
+                            "d08237e2606ed34b",
+                            "e16a461cc71e2694"
+                        ]
+                    ]
+                },
+                {
+                    "id": "5ca345962037a471",
+                    "type": "ui_gauge",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "group": "29de1dd2.698e12",
+                    "order": 2,
+                    "width": "5",
+                    "height": "4",
+                    "gtype": "gage",
+                    "title": "Temperature('C)",
+                    "label": "'C",
+                    "format": "{{value}}",
+                    "min": 0,
+                    "max": "100",
+                    "colors": [
+                        "#00b500",
+                        "#e6e600",
+                        "#ca3838"
+                    ],
+                    "seg1": "",
+                    "seg2": "",
+                    "diff": false,
+                    "className": "",
+                    "x": 1320,
+                    "y": 460,
+                    "wires": []
+                },
+                {
+                    "id": "77eba877adcbc270",
+                    "type": "ui_chart",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "group": "67163726.764658",
+                    "order": 1,
+                    "width": "4",
+                    "height": "4",
+                    "label": "5Min- Monitor",
+                    "chartType": "line",
+                    "legend": "true",
+                    "xformat": "HH:mm:ss",
+                    "interpolate": "linear",
+                    "nodata": "",
+                    "dot": false,
+                    "ymin": "0",
+                    "ymax": "100",
+                    "removeOlder": "5",
+                    "removeOlderPoints": "",
+                    "removeOlderUnit": "60",
+                    "cutout": "",
+                    "useOneColor": false,
+                    "useUTC": false,
+                    "colors": [
+                        "#1f77b4",
+                        "#ff7f0e",
+                        "#0fffef",
+                        "#2ca02c",
+                        "#98df8a",
+                        "#d62728",
+                        "#ff9896",
+                        "#9467bd",
+                        "#c5b0d5"
+                    ],
+                    "outputs": 1,
+                    "useDifferentColor": false,
+                    "className": "",
+                    "x": 1320,
+                    "y": 420,
+                    "wires": [
+                        []
+                    ]
+                },
+                {
+                    "id": "d6478149e2ed1621",
+                    "type": "ui_chart",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "group": "70b4a6cc.14fd78",
+                    "order": 2,
+                    "width": "12",
+                    "height": "4",
+                    "label": "Day-Monitor",
+                    "chartType": "line",
+                    "legend": "true",
+                    "xformat": "HH:mm:ss",
+                    "interpolate": "linear",
+                    "nodata": "",
+                    "dot": false,
+                    "ymin": "0",
+                    "ymax": "100",
+                    "removeOlder": "5",
+                    "removeOlderPoints": "",
+                    "removeOlderUnit": "60",
+                    "cutout": "",
+                    "useOneColor": false,
+                    "useUTC": false,
+                    "colors": [
+                        "#1f77b4",
+                        "#ff7f0e",
+                        "#0fffef",
+                        "#2ca02c",
+                        "#98df8a",
+                        "#d62728",
+                        "#ff9896",
+                        "#9467bd",
+                        "#c5b0d5"
+                    ],
+                    "outputs": 1,
+                    "useDifferentColor": false,
+                    "className": "",
+                    "x": 1330,
+                    "y": 500,
+                    "wires": [
+                        []
+                    ]
+                },
+                {
+                    "id": "395fc420fdae9b9d",
+                    "type": "ui_gauge",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "group": "29de1dd2.698e12",
+                    "order": 1,
+                    "width": "5",
+                    "height": "4",
+                    "gtype": "gage",
+                    "title": "Humidity(%)",
+                    "label": "'%",
+                    "format": "{{value}}",
+                    "min": 0,
+                    "max": "100",
+                    "colors": [
+                        "#00b500",
+                        "#e6e600",
+                        "#ca3838"
+                    ],
+                    "seg1": "",
+                    "seg2": "",
+                    "diff": false,
+                    "className": "",
+                    "x": 1330,
+                    "y": 540,
+                    "wires": []
+                },
+                {
+                    "id": "f4cdaad3e5294b0b",
+                    "type": "mqtt in",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "A",
+                    "qos": "0",
+                    "datatype": "auto",
+                    "broker": "ab558f1953e070ce",
+                    "nl": false,
+                    "rap": true,
+                    "rh": 0,
+                    "inputs": 0,
+                    "x": 870,
+                    "y": 500,
+                    "wires": [
+                        [
+                            "77eba877adcbc270",
+                            "5ca345962037a471",
+                            "d6478149e2ed1621",
+                            "ac2ac47bf4f9e3e3"
+                        ]
+                    ]
+                },
+                {
+                    "id": "fd139770fd46ef5d",
+                    "type": "mqtt in",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "B",
+                    "qos": "0",
+                    "datatype": "auto",
+                    "broker": "ab558f1953e070ce",
+                    "nl": false,
+                    "rap": true,
+                    "rh": 0,
+                    "inputs": 0,
+                    "x": 870,
+                    "y": 560,
+                    "wires": [
+                        [
+                            "d6478149e2ed1621",
+                            "395fc420fdae9b9d",
+                            "77eba877adcbc270",
+                            "fdfad06014f61db6"
+                        ]
+                    ]
+                },
+                {
+                    "id": "b44ae405522c8606",
+                    "type": "rpi-dht22",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "rpi-dht22",
+                    "dht": 22,
+                    "pintype": "1",
+                    "pin": "40",
+                    "x": 360,
+                    "y": 260,
+                    "wires": [
+                        [
+                            "b53cc4a15935cb4a"
+                        ]
+                    ]
+                },
+                {
+                    "id": "b53cc4a15935cb4a",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "function 2",
+                    "func": "var msg1 = {};\nvar msg2 = {};\n\nmsg1.payload = msg.payload;\nmsg1.topic = 'Temp';\nmsg2.payload = msg.humidity;\nmsg2.topic = 'Humid';\n\nnode.status({ fill: \"blue\", shape: \"ring\", text: msg.topic + \":\" + msg.payload + \":\" + msg.humidity });\n\nreturn [msg1, msg2];\n",
+                    "outputs": 2,
+                    "timeout": 0,
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 540,
+                    "y": 260,
+                    "wires": [
+                        [
+                            "f727e66153600ebf"
+                        ],
+                        [
+                            "b3a901e8b5fb5a07"
+                        ]
+                    ]
+                },
+                {
+                    "id": "b3a901e8b5fb5a07",
+                    "type": "mqtt out",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "B",
+                    "qos": "",
+                    "retain": "",
+                    "respTopic": "",
+                    "contentType": "",
+                    "userProps": "",
+                    "correl": "",
+                    "expiry": "",
+                    "broker": "ab558f1953e070ce",
+                    "x": 810,
+                    "y": 260,
+                    "wires": []
+                },
+                {
+                    "id": "f727e66153600ebf",
+                    "type": "mqtt out",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "A",
+                    "qos": "2",
+                    "retain": "",
+                    "respTopic": "",
+                    "contentType": "",
+                    "userProps": "",
+                    "correl": "",
+                    "expiry": "",
+                    "broker": "ab558f1953e070ce",
+                    "x": 810,
+                    "y": 200,
+                    "wires": []
+                },
+                {
+                    "id": "3817baa4c80a5343",
+                    "type": "inject",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "props": [
+                        {
+                            "p": "payload"
+                        },
+                        {
+                            "p": "topic",
+                            "vt": "str"
+                        }
+                    ],
+                    "repeat": "5",
+                    "crontab": "",
+                    "once": false,
+                    "onceDelay": 0.1,
+                    "topic": "",
+                    "payload": "",
+                    "payloadType": "date",
+                    "x": 190,
+                    "y": 260,
+                    "wires": [
+                        [
+                            "b44ae405522c8606"
+                        ]
+                    ]
+                },
+                {
+                    "id": "d08237e2606ed34b",
+                    "type": "rpi-gpio out",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "pin": "16",
+                    "set": "",
+                    "level": "0",
+                    "freq": "",
+                    "out": "out",
+                    "bcm": true,
+                    "x": 600,
+                    "y": 420,
+                    "wires": []
+                },
+                {
+                    "id": "65e8694e7881213e",
+                    "type": "mqtt out",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "C",
+                    "qos": "0",
+                    "retain": "",
+                    "respTopic": "",
+                    "contentType": "",
+                    "userProps": "",
+                    "correl": "",
+                    "expiry": "",
+                    "broker": "ab558f1953e070ce",
+                    "x": 650,
+                    "y": 560,
+                    "wires": []
+                },
+                {
+                    "id": "eccf2ede3c5d7b2e",
+                    "type": "mqtt in",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "topic": "C",
+                    "qos": "0",
+                    "datatype": "auto",
+                    "broker": "ab558f1953e070ce",
+                    "nl": false,
+                    "rap": true,
+                    "rh": 0,
+                    "inputs": 0,
+                    "x": 130,
+                    "y": 440,
+                    "wires": [
+                        [
+                            "d08237e2606ed34b"
+                        ]
+                    ]
+                },
+                {
+                    "id": "a0d5c1d6e106c1b9",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "",
+                    "func": "if (msg.payload === \"ON1\") {\n    msg.payload = true;\n} else if (msg.payload === \"OFF1\") {\n    msg.payload = false;\n}\nreturn msg;\n",
+                    "outputs": 1,
+                    "timeout": "",
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 380,
+                    "y": 520,
+                    "wires": [
+                        [
+                            "d08237e2606ed34b",
+                            "65e8694e7881213e"
+                        ]
+                    ]
+                },
+                {
+                    "id": "ac2ac47bf4f9e3e3",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "function 3",
+                    "func": "context.global.tempp = msg.payload;\n\nreturn msg;",
+                    "outputs": 1,
+                    "timeout": 0,
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 1080,
+                    "y": 360,
+                    "wires": [
+                        [
+                            "5fcf10a10832ddb7"
+                        ]
+                    ]
+                },
+                {
+                    "id": "fdfad06014f61db6",
+                    "type": "function",
+                    "z": "373850353c629791",
+                    "name": "function 4",
+                    "func": "context.global.humid = msg.payload;\nreturn msg;",
+                    "outputs": 1,
+                    "timeout": 0,
+                    "noerr": 0,
+                    "initialize": "",
+                    "finalize": "",
+                    "libs": [],
+                    "x": 1080,
+                    "y": 400,
+                    "wires": [
+                        [
+                            "90ad0bc07e76468d"
+                        ]
+                    ]
+                },
+                {
+                    "id": "5fcf10a10832ddb7",
+                    "type": "debug",
+                    "z": "373850353c629791",
+                    "name": "debug 1",
+                    "active": false,
+                    "tosidebar": true,
+                    "console": false,
+                    "tostatus": false,
+                    "complete": "payload",
+                    "targetType": "msg",
+                    "statusVal": "",
+                    "statusType": "auto",
+                    "x": 1300,
+                    "y": 340,
+                    "wires": []
+                },
+                {
+                    "id": "90ad0bc07e76468d",
+                    "type": "debug",
+                    "z": "373850353c629791",
+                    "name": "debug 2",
+                    "active": false,
+                    "tosidebar": true,
+                    "console": false,
+                    "tostatus": false,
+                    "complete": "false",
+                    "statusVal": "",
+                    "statusType": "auto",
+                    "x": 1300,
+                    "y": 380,
+                    "wires": []
+                },
+                {
+                    "id": "ab558f1953e070ce",
+                    "type": "mqtt-broker",
+                    "name": "",
+                    "broker": "broker.mqtt.cool",
+                    "port": "1883",
+                    "clientid": "",
+                    "autoConnect": true,
+                    "usetls": false,
+                    "protocolVersion": "4",
+                    "keepalive": "60",
+                    "cleansession": true,
+                    "autoUnsubscribe": true,
+                    "birthTopic": "",
+                    "birthQos": "0",
+                    "birthRetain": "false",
+                    "birthPayload": "",
+                    "birthMsg": {},
+                    "closeTopic": "",
+                    "closeQos": "0",
+                    "closeRetain": "false",
+                    "closePayload": "",
+                    "closeMsg": {},
+                    "willTopic": "",
+                    "willQos": "0",
+                    "willRetain": "false",
+                    "willPayload": "",
+                    "willMsg": {},
+                    "userProps": "",
+                    "sessionExpiry": ""
+                },
+                {
+                    "id": "67163726.764658",
+                    "type": "ui_group",
+                    "name": "2",
+                    "tab": "67e2957.e504f6c",
+                    "order": 2,
+                    "disp": false,
+                    "width": "5",
+                    "collapse": false
+                },
+                {
+                    "id": "016576f59f983362",
+                    "type": "linetoken",
+                    "name": "ABC"
+                },
+                {
+                    "id": "29de1dd2.698e12",
+                    "type": "ui_group",
+                    "name": "1",
+                    "tab": "67e2957.e504f6c",
+                    "order": 1,
+                    "disp": false,
+                    "width": "5",
+                    "collapse": false
+                },
+                {
+                    "id": "70b4a6cc.14fd78",
+                    "type": "ui_group",
+                    "name": "3",
+                    "tab": "67e2957.e504f6c",
+                    "order": 3,
+                    "disp": false,
+                    "width": "12",
+                    "collapse": false
+                },
+                {
+                    "id": "67e2957.e504f6c",
+                    "type": "ui_tab",
+                    "name": "Home",
+                    "icon": "dashboard",
+                    "disabled": false,
+                    "hidden": false
+                }
+            ]
+            </pre>
+        </li>
+    </ol>
+</div>
+</body>
+</html>

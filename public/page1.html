@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raspberry Pi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="content">
+        <center><h2 style="color: red"><i class="fa fa-warning" style="font-size:20px;color:red"></i> ข้อตกลงผู้อ่าน <i class="fa fa-warning" style="font-size:20px;color:red"></i></h2>
+        <p style="color: red">***ข้อมูลจากบล็อกนี้จัดทำเมื่อวันที่ 19/07/2567***</p>
+        </center>
+        <h1>Raspberry Pi คืออะไร</h1>
+        <img src="Embeded/1.png" alt="Raspberry Pi" class="cen">
+        <p>
+            Raspberry Pi คือคอมพิวเตอร์ขนาดเล็กที่พัฒนาโดยมูลนิธิ Raspberry Pi Foundation ในสหราชอาณาจักร 
+            มีวัตถุประสงค์เพื่อส่งเสริมการเรียนรู้และการสอนด้านวิทยาการคอมพิวเตอร์และการเขียนโปรแกรม 
+            โดย Raspberry Pi มีขนาดเล็ก พกพาสะดวก และราคาถูก มาพร้อมกับฮาร์ดแวร์พื้นฐานที่สามารถเชื่อมต่อกับอุปกรณ์ต่างๆ ได้ 
+            เช่น หน้าจอ แป้นพิมพ์ เมาส์ และอุปกรณ์ต่อพ่วงอื่นๆ
+        </p>
+        <h2>คุณสมบัติทั่วไปของ Raspberry Pi:</h2>
+        <ul>
+            <li>หน่วยประมวลผล (CPU) ARM-based</li>
+            <li>หน่วยความจำ (RAM)</li>
+            <li>พอร์ต USB สำหรับเชื่อมต่ออุปกรณ์ต่างๆ</li>
+            <li>พอร์ต HDMI สำหรับเชื่อมต่อกับจอภาพ</li>
+            <li>การเชื่อมต่อเครือข่าย (Ethernet/Wi-Fi)</li>
+            <li>พอร์ต GPIO (General Purpose Input/Output) สำหรับเชื่อมต่อกับเซ็นเซอร์และอุปกรณ์ต่างๆ</li>
+        </ul>
+
+        <h2>การติดตั้งระบบปฏิบัติการให้ Raspberry PI</h2>
+        <p>
+            ในบทความนี้ จะสอนการใช้งาน Raspberry Pi เบื้องต้น ตั้งแต่การติดตั้งระบบปฎิบัติการลง Micro SD card 
+            ซึ่งในที่นี่คือ Raspbian โดยใช้กับบอร์ด Raspberry Pi 4 โดยทําใช้ระบบปฎิบัติการ Windows ในการติดตั้ง และ 
+            จําเป็นต้องต่ออินเตอร์เน็ตด้วย
+        </p>
+        <h3>อุปกรณ์ที่ต้องใช้</h3>
+        <ul>
+            <li>บอร์ด Raspberry Pi 4</li>
+            <li>Micro SD card class 10 ขนาด 16 GB ขึ้นไป</li>
+            <li>สาย Micro USB</li>
+            <li>สาย micro-HDMI</li>
+            <li>หน้าจอแสดงผล (สามารถเชื่อมต่อแบบ HDMI ได้)</li>
+            <li>USB Keyboard และ USB Mouse</li>
+            <li>สาย LAN สําหรับเชื่อมต่อ Internet หรือ USB Wifi</li>
+            <li>คอมพิวเตอร์ + Card Reader</li>
+        </ul>
+
+        <h3>การติดตั้งระบบปฎิบัติการลง MICRO SD CARD</h3>
+        <h4>วิธีที่ 1 – Install Raspberry Pi OS using Raspberry Pi Imager</h4>
+        <ol>
+            <li>Step 1a: ดาวโหลดอิมเมจ OS จาก <a href="https://www.raspberrypi.org/software/" target="_blank">https://www.raspberrypi.org/software/</a> แล้วเลือก Raspberry Pi</li>
+            <img src="Embeded/2.png" alt="Raspberry Pi" class="cen">
+            <li>Step 2a: เมื่อดาวโหลดเสร็จเรียบร้อยแล้ว ให้ติดตั้ง image Setup</li>
+            <img src="Embeded/3.png" alt="Raspberry Pi" class="cen">
+            <li>Step 3a: เลือก OS เป็น Raspbian และเลือก SD Card</li>
+            <img src="Embeded/4.png" alt="Raspberry Pi" class="cen">
+            <li>Step 4a: Write OS image</li>
+            <img src="Embeded/5.png" alt="Raspberry Pi" class="cen">
+            <li>Step 5a: เมื่อติดตั้งเสร็จแล้วให้ถอด Micro SD card ออกจากคอมพิวเตอร์แล้วใส่ไปที่ Raspberry Pi ต่อไป</li>
+        </ol>
+
+        <h3>การเชื่อมต่อเมื่อเริ่มต้นใช้งานครั้งแรก</h3>
+        <h2>การอัพเดตโปรแกรม</h2>
+        <p><strong>อัพเดทโปรแกรมให้ใหม่ล่าสุดด้วยคำสั่ง:</strong></p>
+        <pre><code>sudo apt-get update</code></pre>
+        <p>เข้า Terminal แล้วพิมพ์คำสั่งดังกล่าว แล้วกด Enter เพื่อทำการอัพเดทโปรแกรม.</p>
+
+        <p><strong>จากนั้นอัพเดทโปรแกรมให้ใหม่ล่าสุดด้วยคำสั่ง:</strong></p>
+        <pre><code>sudo apt-get upgrade</code></pre>
+        <p>พิมพ์คำสั่งเสร็จแล้วกด Enter และกด Y แล้ว Enter เพื่อยืนยัน (ขั้นตอนนี้จะใช้เวลานาน).</p>
+
+        <h3>เข้าใช้ Raspberry Pi ด้วยการรีโมต</h3>
+        <ol>
+            <li>Step 1: จ่ายไฟให้ Raspberry Pi ตั้งค่า Remote Password = raspberry</li>
+            <li>Step 2: กําหนดค่าครั้งแรก เพื่อให้สามารถใช้งานแบบ Remote Desktop ได้</li>
+            <img src="Embeded/6.png" alt="Raspberry Pi" class="cen">
+            <img src="Embeded/7.png" alt="Raspberry Pi" class="cen">
+            <li>Step 3: ติดตั้ง ipscan24 จากนั้นค้นหา ip ของ Raspberry Pi (ต้องเชื่อม WIFI ในวงเดียวกัน)</li>
+            <img src="Embeded/8.png" alt="Raspberry Pi" class="cen">
+            <li>Step 4: ติดตั้ง VNC จากนั้นค้นหา ip ของ Raspberry Pi ใส่ username, password เพื่อเข้ารีโมต</li>
+            <img src="Embeded/9.png" alt="Raspberry Pi" class="cen">
+            <img src="Embeded/10.png" alt="Raspberry Pi" class="cen">
+        </ol>
+        <h3>Raspberry Pi_4_GPIO</h3>
+        <img src="Embeded/500.webp" alt="Raspberry Pi" class="cen">
+        <h2>ทดสอบ GPIO ด้วย Python</h2>
+
+        <h3>1. Python Switch Control LED (กดติด, ปล่อยดับ)</h3>
+        <img src="Embeded/501.png" alt="Raspberry Pi" class="cen">
+        <p><strong>อุปกรณ์ที่ต้องใช้:</strong></p>
+        <ul>
+            <li>Raspberry Pi 4</li>
+            <li>LED</li>
+            <li>สวิตช์ (push button)</li>
+            <li>ตัวต้านทาน (Resistor) 1k โอห์ม (สำหรับ LED)</li>
+            <li>ตัวต้านทาน (Resistor)</li>
+            <li>สายจัมเปอร์</li>
+            <li>บอร์ดเบรดบอร์ด (Breadboard)</li>
+        </ul>
+
+        <p><strong>การต่อวงจร:</strong></p>
+        <ol>
+            <li>ต่อขา GPIO ของสวิตช์ไปที่ขา GPIO 16 (หรือเปลี่ยนขาตามที่ต้องการ)</li>
+            <li>ต่อขาอื่นของสวิตช์ไปที่ ground</li>
+            <li>ใช้ตัวต้านทาน ต่อระหว่างขา GPIO 11 กับ ground (pull-down resistor)</li>
+            <li>ต่อขาแคโทดของ LED (ขาสั้น) ไปที่ ground</li>
+            <li>ต่อขาแอโนดของ LED (ขายาว) ไปที่ขา GPIO 12 (หรือเปลี่ยนขาตามที่ต้องการ) ผ่านตัวต้านทาน</li>
+        </ol>
+
+        <p><strong>โค้ด Python:</strong></p>
+        <pre><code>import RPi.GPIO as GPIO
+import time
+
+# กำหนดหมายเลขขาของ GPIO
+LED_PIN = 12
+SWITCH_PIN = 16
+
+# การตั้งค่าการใช้หมายเลขขา GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+# ฟังก์ชั่นหลัก
+def main():
+    try:
+        while True:
+            # อ่านสถานะของสวิตช์
+            if GPIO.input(SWITCH_PIN) == GPIO.HIGH:
+                # สวิตช์ถูกกด, เปิด LED
+                GPIO.output(LED_PIN, GPIO.HIGH)
+            else:
+                # สวิตช์ไม่ได้ถูกกด, ปิด LED
+                GPIO.output(LED_PIN, GPIO.LOW)
+            
+            # พักการทำงานเล็กน้อยเพื่อหลีกเลี่ยงการตรวจจับซ้ำๆ
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        GPIO.cleanup()  # รีเซ็ตการตั้งค่า GPIO
+
+# เรียกใช้ฟังก์ชั่นหลัก
+if __name__ == "__main__":
+    main()</code></pre>
+        
+        <h3>2. Python Switch Control LED (กดติด, กดดับ)</h3>
+        <p><strong>โค้ด Python:</strong></p>
+        <pre><code>import RPi.GPIO as GPIO
+import time
+
+# กำหนดหมายเลขขาของ GPIO
+LED_PIN = 12
+SWITCH_PIN = 16
+
+# การตั้งค่าการใช้หมายเลขขา GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+# ตัวแปรเพื่อเก็บสถานะของ LED
+led_state = False
+
+def toggle_led(channel):
+    global led_state
+    led_state = not led_state  # สลับสถานะ LED
+    GPIO.output(LED_PIN, led_state)
+
+# ติดตั้งการทำงานของสวิตช์ (Interrupt) เพื่อเรียกใช้ฟังก์ชัน toggle_led เมื่อสวิตช์ถูกกด
+GPIO.add_event_detect(SWITCH_PIN, GPIO.RISING, callback=toggle_led, bouncetime=300)
+
+# ฟังก์ชั่นหลัก
+def main():
+    try:
+        while True:
+            # รอการทำงาน
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        GPIO.cleanup()  # รีเซ็ตการตั้งค่า GPIO
+
+# เรียกใช้ฟังก์ชั่นหลัก
+if __name__ == "__main__":
+    main()</code></pre>
+
+        <h3>3. Python Switch Control LED (Counter)</h3>
+        <p><strong>การเชื่อมต่อฮาร์ดแวร์:</strong></p>
+        <ol>
+            <li><strong>LED:</strong>
+                <ul>
+                    <li>ขาแคโทด (ขาสั้น) ต่อกับ ground</li>
+                    <li>ขาแอโนด (ขายาว) ต่อกับขา GPIO ผ่านตัวต้านทาน</li>
+                </ul>
+            </li>
+            <li><strong>สวิตช์:</strong>
+                <ul>
+                    <li>ขา GPIO ของสวิตช์ต่อกับขา GPIO 16</li>
+                    <li>ขาอื่นของสวิตช์ต่อกับ ground</li>
+                    <li>ใช้ตัวต้านทาน ต่อระหว่างขา GPIO 16 กับ ground (pull-down resistor)</li>
+                </ul>
+            </li>
+        </ol>
+
+        <p><strong>โค้ด Python:</strong></p>
+        <pre><code>import RPi.GPIO as GPIO
+import time
+
+# กำหนดหมายเลขขาของ GPIO
+LED_PIN = 12
+SWITCH_PIN = 16
+
+# การตั้งค่าการใช้หมายเลขขา GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+# ตัวแปรเพื่อเก็บจำนวนการกด
+switch_counter = 0
+
+def count_switch(channel):
+    global switch_counter
+    switch_counter += 1  # เพิ่มจำนวนการกด
+    print(f"Switch pressed {switch_counter} times")  # แสดงจำนวนการกด
+    # แสดง LED สำหรับเวลา 0.5 วินาที เพื่อให้รู้ว่า LED ถูกเปิด
+    GPIO.output(LED_PIN, GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(LED_PIN, GPIO.LOW)
+
+# ติดตั้งการทำงานของสวิตช์ (Interrupt) เพื่อเรียกใช้ฟังก์ชัน count_switch เมื่อสวิตช์ถูกกด
+GPIO.add_event_detect(SWITCH_PIN, GPIO.RISING, callback=count_switch, bouncetime=300)
+
+# ฟังก์ชั่นหลัก
+def main():
+    try:
+        while True:
+            # รอการทำงาน
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        GPIO.cleanup()  # รีเซ็ตการตั้งค่า GPIO
+
+# เรียกใช้ฟังก์ชั่นหลัก
+if __name__ == "__main__":
+    main()</code></pre>
+        
+        <!-- ต่อจากนี้เป็นเนื้อหาใหม่ที่คุณต้องการเพิ่ม -->
+        <h2>การติดตั้ง Node-RED</h2>
+        <ol>
+            <li><strong>ติดตั้ง Node-RED:</strong>
+                <pre><code>sudo apt update
+sudo apt install nodered</code></pre>
+            </li>
+            <li><strong>เริ่มใช้งาน Node-RED:</strong>
+                <pre><code>node-red-start</code></pre>
+            </li>
+            <li><strong>เข้าถึง Node-RED UI:</strong>
+                <img src="Embeded/11.png" alt="Raspberry Pi" class="cen">
+                <p>เปิดเว็บบราวเซอร์และไปที่ <code>http://<i>IPAddress</i>:1880</code></p>
+            </li>
+        </ol>
+
+        <h2>Node-RED UI</h2>
+        <p>Node-RED UI จะเป็นส่วนเสริมของโปรแกรม Node-RED เพื่อให้โปรแกรม Node-RED สามารถสร้าง UI ไว้สำหรับการแสดงผลผ่าน UI ได้</p>
+        <ol>
+            <li><strong>ตรวจสอบว่า Raspberry Pi ของเรานั้นมี npm หรือไม่</strong>
+                <pre><code>npm -v</code></pre>
+            </li>
+            <li><strong>หากเป็นรุ่นที่ไม่รองรับให้ Update</strong>
+                <pre><code>wget https://www.npmjs.com/install.sh && sudo sh ./install.sh</code></pre>
+            </li>
+            <li><strong>หากไม่มีให้ทําการติดตั้ง</strong>
+                <pre><code>sudo apt-get install npm</code></pre>
+            </li>
+            <li><strong>เข้าไปใน Home ของ node-red</strong>
+                <pre><code>cd $HOME/.node-red</code></pre>
+            </li>
+            <li><strong>ติดตั้ง Node-RED UI</strong>
+                <pre><code>sudo npm install node-red-contrib-ui</code></pre>
+            </li>
+            
+            <li><strong>เข้าเว็บบราวเซอร์</strong>
+                <p>ใส่ <code>IPAddress:1880</code> ตามด้วย <code>/ui</code> ก็จะแสดงหน้าของ Node-RED UI ขึ้นมา</p>
+            </li>
+        </ol>
+
+        <h2>Node-RED เพื่อควบคุมสวิตซ์กดแบบ กดติด กดดับ {Switch-LED 1 คู่}</h2>
+        <!-- เพิ่มเนื้อหาที่เกี่ยวข้องที่นี่ -->
+        <img src="Embeded/12.png" alt="Raspberry Pi" class="cen">
+        <img src="Embeded/13.png" alt="Raspberry Pi" class="cen">
+        <img src="Embeded/14.png" alt="Raspberry Pi" class="cen">
+
+        <h2>Node-RED เพื่ออ่าน DHT-22 Sensor</h2>
+        <ol>
+            <li><strong>Installing this node requires three steps:</strong>
+                <ul>
+                    <li>Install the BCM2835 library from here.</li>
+                    <li>Install the node-dht-sensor dependency:
+                        <pre><code>sudo npm install --unsafe-perm -g node-dht-sensor</code></pre>
+                    </li>
+                    <li>Install this node:
+                        <pre><code>sudo npm install --unsafe-perm -g node-red-contrib-dht-sensor</code></pre>
+                    </li>
+                    
+                    <li>Reboot system:
+                        <pre><code>sudo reboot</code></pre>
+                    </li>
+                    
+                    <img src="Embeded/15.png" alt="Raspberry Pi" class="cen">
+                    <img src="Embeded/16.png" alt="Raspberry Pi" class="cen">
+                    <img src="Embeded/17.png" alt="Raspberry Pi" class="cen">
+                </ul>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
