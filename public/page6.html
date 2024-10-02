@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>ThingsBoard IoT Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        
+        
+    </head>
+    <body>
+        <div class="content">
+            <center><h2 style="color: red"><i class="fa fa-warning" style="font-size:20px;color:red"></i> ข้อตกลงผู้อ่าน <i class="fa fa-warning" style="font-size:20px;color:red"></i></h2>
+                <p style="color: red">***ข้อมูลจากบล็อกนี้จัดทำเมื่อวันที่ 10/09/2567***</p>
+                </center>
+            <h1>ThingsBoard IoT Platform</h1>
+            <img src="Embeded6/0.png" class="cen">
+            <p>ThingsBoard เป็นแพลตฟอร์ม Internet of Things (IoT) แบบโอเพนซอร์ส 
+                ซึ่งถูกออกแบบมาเพื่อจัดการและพัฒนาโซลูชัน IoT อย่างครอบคลุม 
+                มันช่วยให้ผู้ใช้งานสามารถจัดการอุปกรณ์ IoT (IoT devices) 
+                เก็บข้อมูลที่รวบรวมจากอุปกรณ์เหล่านั้น รวมถึงการแสดงผลข้อมูลและการควบคุมอุปกรณ์ได้ในเวลาเดียวกัน</p>
+                <img src="Embeded6/01.png" class="cen">
+            <div class="section">
+                <h2>ฟีเจอร์หลักของ ThingsBoard ได้แก่:</h2>
+                <ul>
+                    <li><strong>การจัดการอุปกรณ์ (Device Management):</strong> ผู้ใช้สามารถเพิ่มอุปกรณ์ IoT จำนวนมากได้อย่างง่ายดาย 
+                        และสามารถจัดการอุปกรณ์แต่ละตัว เช่น การตั้งค่า การอัปเดตซอฟต์แวร์ การเก็บข้อมูลสถานะ และข้อมูลต่างๆ ที่อุปกรณ์ส่งมา</li>
+                    <li><strong>การเก็บและประมวลผลข้อมูล (Data Collection & Processing):</strong> ThingsBoard 
+                        สามารถรวบรวมข้อมูลจากอุปกรณ์ IoT และทำการประมวลผลข้อมูลด้วยกฎ (Rule Engine) 
+                        เพื่อดำเนินการต่างๆ เช่น การส่งข้อมูลไปยังปลายทางอื่น การแจ้งเตือน หรือการดำเนินการบางอย่างตามเงื่อนไขที่กำหนด</li>
+                    <li><strong>การสร้างแดชบอร์ด (Dashboard):</strong> มีระบบแดชบอร์ดที่สามารถแสดงข้อมูลที่ถูกเก็บมาจากอุปกรณ์ 
+                        ในรูปแบบกราฟหรือแผนภาพต่างๆ ซึ่งช่วยให้ผู้ใช้งานสามารถวิเคราะห์ข้อมูลได้อย่างรวดเร็วและมีประสิทธิภาพ</li>
+                    <li><strong>การแจ้งเตือน (Alarming):</strong> เมื่อมีเหตุการณ์ที่ไม่ปกติเกิดขึ้น เช่น อุปกรณ์หยุดทำงาน 
+                        หรือค่าที่ส่งมาผิดปกติ สามารถกำหนดการแจ้งเตือนไปยังผู้ใช้งานหรือส่งการแจ้งเตือนไปยังระบบอื่นๆ ได้</li>
+                    <li><strong>การควบคุมอุปกรณ์ระยะไกล (Remote Control):</strong> ผู้ใช้สามารถควบคุมอุปกรณ์ต่างๆ 
+                        จากระยะไกลผ่านแพลตฟอร์ม เช่น การเปิด/ปิดเครื่อง การเปลี่ยนการตั้งค่า หรือการตรวจสอบสถานะของอุปกรณ์</li>
+                    <li><strong>การขยายระบบ (Scalability):</strong> ThingsBoard ออกแบบมาเพื่อรองรับการขยายระบบให้สามารถจัดการอุปกรณ์จำนวนมากขึ้น 
+                        หรือการประมวลผลข้อมูลที่มากขึ้นอย่างมีประสิทธิภาพ</li>
+                    <li><strong>รองรับโปรโตคอลหลายชนิด (Multi-protocol Support):</strong> ThingsBoard รองรับโปรโตคอลต่างๆ 
+                        เช่น MQTT, CoAP และ HTTP ซึ่งช่วยให้สามารถเชื่อมต่อกับอุปกรณ์ IoT หลากหลายประเภทได้</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Mission 1/4: ส่งข้อมูลค่า Humidity และ Temperature จากเซ็นเซอร์ DHT-22 ไปยัง Dashboard ของ ThingsBoard</h2>
+                <ul>
+                    <li>เข้าสู่ระบบที่เว็บไซต์ Live Demo ของ ThingsBoard: <a href="https://demo.thingsboard.io" target="_blank">https://demo.thingsboard.io</a></li>
+                    <img src="Embeded6/1.png" class="cen">
+                    <img src="Embeded6/pre1.PNG" class="cen">
+                    <li>เมื่อเข้ามาที่หน้า Main ของ ThingsBoard ให้เลือก "Device" ในส่วนของ Device Management เพื่อสร้างอุปกรณ์ใหม่</li>
+                    <img src="Embeded6/2.png" class="cen">
+                    <li>จะปรากฏอุปกรณ์ใหม่ชื่อว่า "PkTest1234" ที่หน้า Device → คลิกที่อุปกรณ์นี้ แล้วเลือกคัดลอก Access Token Code</li>
+                    <img src="Embeded6/3.png" class="cen">
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>การติดตั้ง Arduino Library</h2>
+                <ul>
+                    <li>Add Library “ThingsBoard by ThingsBoard Team -- V 0.4.0”</li>
+                    <li>Add Library “ArduinoHttpClient by Arduino -- V 0.4.0”</li>
+                    <li>Add Library “ArduinoJson by Benoit Blanchon – V6.18.0”</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>ทดสอบโปรแกรม</h2>
+                <pre><code>
+#include "ThingsBoard.h"
+#include <WiFi.h>
+#define WIFI_AP "Test1234"
+#define WIFI_PASSWORD "MaiMeeJingJing"
+#define TOKEN "fm6EwZ1L9tZrSV1f06pM"
+#define THINGSBOARD_SERVER "demo.thingsboard.io"
+#define SERIAL_DEBUG_BAUD 115200
+
+WiFiClient espClient;
+ThingsBoard tb(espClient);
+int status = WL_IDLE_STATUS;
+
+void setup() {
+  Serial.begin(SERIAL_DEBUG_BAUD);
+  WiFi.begin(WIFI_AP, WIFI_PASSWORD);
+  InitWiFi();
+}
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    reconnect();
+  }
+  if (!tb.connected()) {
+    Serial.print("Connecting to: ");
+    Serial.print(THINGSBOARD_SERVER);
+    Serial.print(" with token ");
+    Serial.println(TOKEN);
+    if (!tb.connect(THINGSBOARD_SERVER, TOKEN)) {
+      Serial.println("Failed to connect");
+      return;
+    }
+  }
+  Serial.print("Sending data...");
+  float xTempp = random(00, 50);
+  float xHdmid = random(51, 99);
+  Serial.print(xTempp, 2);
+  Serial.print(",");
+  Serial.print(xHdmid, 2);
+  Serial.println();
+  tb.sendTelemetryFloat("temperature", xTempp);
+  tb.sendTelemetryFloat("humidity", xHdmid);
+  tb.loop();
+  delay(5000);
+}
+
+void InitWiFi() {
+  Serial.println("Connecting to AP ...");
+  WiFi.begin(WIFI_AP, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("Connected to AP");
+}
+
+void reconnect() {
+  status = WiFi.status();
+  if (status != WL_CONNECTED) {
+    WiFi.begin(WIFI_AP, WIFI_PASSWORD);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+    Serial.println("Connected to AP");
+  }
+}
+                </code></pre>
+            </div>
+
+            <div class="section">
+                <h2>แสดงข้อมูลบน Dashboard</h2>
+                <ul>
+                    <li>กลับมาที่หน้า Device ของ ThingsBoard ให้เลือก "Latest Telemetry" จะปรากฏข้อมูลที่ส่งเข้ามา</li>
+                    <img src="Embeded6/4.png" class="cen">
+                    <img src="Embeded6/5.png" class="cen">
+                    <li>เลือกข้อมูล humidity แล้วเลือก "Show on Widget" → เลือกใช้ "Analogue Gauges" → เพิ่มไปยัง Dashboard</li>
+                    <img src="Embeded6/7.png" class="cen">
+                    <img src="Embeded6/8.png" class="cen">
+                    <li>ทำซ้ำกับตัวแปร humidity</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>ปรับแก้ไข Dashboard</h2>
+                <p>ปรับแก้ไข Dashboard ให้ตรงกับรูปแบบที่ต้องการ และมีข้อสังเกตดังนี้:</p>
+                <ul>
+                    <li>ค่า Analog Gauge ต้องอยู่ระหว่าง 0-100</li>
+                    <li>ค่า Digital Gauge ต้องอยู่ระหว่าง 0-100</li>
+                    <img src="Embeded6/9.png" class="cen">
+                </ul>
+                <p>ผลลัพธ์ดังรูป</p>
+                <img src="Embeded6/11.png" class="cen">
+            </div>
+        </div>
+    </body>
+</html>

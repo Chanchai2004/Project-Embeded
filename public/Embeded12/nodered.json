@@ -1,0 +1,447 @@
+[
+    {
+        "id": "2fb4e09a443b70b6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fccbc6b633d875c0",
+        "type": "debug",
+        "z": "2fb4e09a443b70b6",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "01c08fb77e36220a",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function_Off",
+        "func": "var fc=5;\nvar sa=3;\nvar addresses=1;\nvar value=0;\nmsg.slave_ip=\"192.168.1.150\";\nmsg.payload={\"value\":value , 'fc': fc, 'unitid': 1, 'address': sa , 'quantity': addresses };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "15597bb6cd51d7a9"
+            ]
+        ]
+    },
+    {
+        "id": "a40315b958557719",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function_On",
+        "func": "var fc=5;\nvar sa=3;\nvar addresses=1;\nvar value=0x00ff;\nmsg.slave_ip=\"192.168.1.150\";\nmsg.payload={\"value\":value , 'fc': fc, 'unitid': 1, 'address': sa , 'quantity': addresses };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "15597bb6cd51d7a9"
+            ]
+        ]
+    },
+    {
+        "id": "2335ed67beecd5f4",
+        "type": "inject",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "01c08fb77e36220a"
+            ]
+        ]
+    },
+    {
+        "id": "0ffaf85a6a1c8b0d",
+        "type": "inject",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "a40315b958557719"
+            ]
+        ]
+    },
+    {
+        "id": "affe4d69d782f9cd",
+        "type": "modbus-read",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": false,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "6",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "4d364e0f1aa3bcf9",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "c5e5de52654e0b4c",
+                "fccbc6b633d875c0",
+                "9f901a297cea91b3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "15597bb6cd51d7a9",
+        "type": "modbus-flex-write",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "4d364e0f1aa3bcf9",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a5f5a821fa2b07bb",
+        "type": "ui_led",
+        "z": "2fb4e09a443b70b6",
+        "order": 0,
+        "group": "6f51eacc11502693",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d01d6b7ac6bca02c",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function_Off",
+        "func": "var fc=5;\nvar sa=2;\nvar addresses=1;\nvar value=0;\nmsg.slave_ip=\"192.168.1.150\";\nmsg.payload={\"value\":value , 'fc': fc, 'unitid': 1, 'address': sa , 'quantity': addresses };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 600,
+        "wires": [
+            [
+                "a34785e3f0f78c62"
+            ]
+        ]
+    },
+    {
+        "id": "0ca39f19786430ef",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function_On",
+        "func": "var fc=5;\nvar sa=2;\nvar addresses=1;\nvar value=0x00ff;\nmsg.slave_ip=\"192.168.1.150\";\nmsg.payload={\"value\":value , 'fc': fc, 'unitid': 1, 'address': sa , 'quantity': addresses };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 660,
+        "wires": [
+            [
+                "a34785e3f0f78c62"
+            ]
+        ]
+    },
+    {
+        "id": "987a8e552a81217e",
+        "type": "inject",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "d01d6b7ac6bca02c"
+            ]
+        ]
+    },
+    {
+        "id": "26baf96a99e919b2",
+        "type": "inject",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "0ca39f19786430ef"
+            ]
+        ]
+    },
+    {
+        "id": "a34785e3f0f78c62",
+        "type": "modbus-flex-write",
+        "z": "2fb4e09a443b70b6",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "4d364e0f1aa3bcf9",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 590,
+        "y": 600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c5e5de52654e0b4c",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function 1",
+        "func": "\nlet payload = msg.payload;\n\n// ตรวจสอบว่า msg.payload เป็น array และมีข้อมูลใน index 0 หรือไม่\nif (Array.isArray(payload) && payload.length > 0) {\n    // สร้าง object ใหม่ที่เก็บเฉพาะค่า index 0\n    let result = payload[0] ;\n    \n    // ส่ง object นี้ไปใน msg.payload\n    msg.payload = result;\n} else {\n    // กรณีที่ไม่มีข้อมูลใน msg.payload ให้ส่งออกค่า null\n    msg.payload = null;\n}\n\n// ส่ง msg ออกไป\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 140,
+        "wires": [
+            [
+                "a5f5a821fa2b07bb"
+            ]
+        ]
+    },
+    {
+        "id": "9f901a297cea91b3",
+        "type": "function",
+        "z": "2fb4e09a443b70b6",
+        "name": "function 2",
+        "func": "\nlet payload = msg.payload;\n\n// ตรวจสอบว่า msg.payload เป็น array และมีข้อมูลใน index 0 หรือไม่\nif (Array.isArray(payload) && payload.length > 0) {\n    // สร้าง object ใหม่ที่เก็บเฉพาะค่า index 0\n    let result = payload[1] ;\n    \n    // ส่ง object นี้ไปใน msg.payload\n    msg.payload = result;\n} else {\n    // กรณีที่ไม่มีข้อมูลใน msg.payload ให้ส่งออกค่า null\n    msg.payload = null;\n}\n\n// ส่ง msg ออกไป\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "f02cef6800f274fa"
+            ]
+        ]
+    },
+    {
+        "id": "f02cef6800f274fa",
+        "type": "ui_led",
+        "z": "2fb4e09a443b70b6",
+        "order": 1,
+        "group": "6f51eacc11502693",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 730,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4d364e0f1aa3bcf9",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.1.150",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "COM3",
+        "serialType": "RTU",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "6f51eacc11502693",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "5969fd52.22b424",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5969fd52.22b424",
+        "type": "ui_tab",
+        "name": "TEST1",
+        "icon": "dashboard",
+        "order": "1"
+    }
+]
