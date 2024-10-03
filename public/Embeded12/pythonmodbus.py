@@ -32,7 +32,7 @@ if __name__ == '__main__':
             client = connect(ip_address)
 
             while True:
-                relay = input("Enter relay number (100-103) to toggle or 'back' to change IP: ")
+                relay = input("Enter relay number (0-3) to toggle or 'back' to change IP: ")
                 if relay.lower() == 'back':
                     disconnect(client)
                     break
